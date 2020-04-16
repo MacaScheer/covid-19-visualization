@@ -13,4 +13,7 @@ Adjustable parameters: City, State => population density, number of religious ce
 age demographics
 
 
+INSTALLATION INSTRUCTIONS:
 <!-- npm install -g webpack webpack-cli -->
+
+<!-- command : webpack --watch --mode=development -->
