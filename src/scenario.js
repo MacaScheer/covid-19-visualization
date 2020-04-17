@@ -14,18 +14,18 @@ function Scenario(ctx, demoObj) {
     this.seniors = demoObj.population * demoObj.percentSeniors;
     this.popDensity = Math.floor(this.area / this.population);
     // this.size
-    this.minorObj = { radius: 2, color: "#1f7e25", vel: [-2,2], age: "1-12"}
-    this.teenObj = { radius: 5, color: "#b21c1c", vel: [6,-7], age: "13-17"};
-    this.adultObj = { radius: 7, color: "#6666e8", vel: [-8,-8], age: "18-65"};
-    this.seniorObj = { radius: 3, color: "#60b4f8", vel: [7,7], age: "66 and up"};
+    this.minorObj = { radius: 2, color: "#1f7e25", vel: [-.2,.2], age: "1-12"}
+    this.teenObj = { radius: 3, color: "#b21c1c", vel: [1.5,-1.5], age: "13-17"};
+    this.adultObj = { radius: 4, color: "#6666e8", vel: [-1.8,-1.8], age: "18-65"};
+    this.seniorObj = { radius: 3, color: "#60b4f8", vel: [.4,.4], age: "66 and up"};
 }
 
 Scenario.prototype.createPersons = function () {
-    console.log("minors: ", this.minors, " teens: ", this.teens, " adults: ", this.adults, " seniors: ", this.seniors)
-    // this.createLoop("minor", this.minors)
-    // this.createLoop("teen", this.teens)
-    this.createLoop("adult", 2)  //this.adults)
-    // this.createLoop("senior", this.seniors)
+    // console.log("minors: ", this.minors, " teens: ", this.teens, " adults: ", this.adults, " seniors: ", this.seniors)
+    this.createLoop("minor", this.minors)
+    this.createLoop("teen", this.teens)
+    this.createLoop("adult", this.adults)  //this.adults)
+    this.createLoop("senior", this.seniors)
 }
 
 Scenario.prototype.createLoop = function (ageGroup, n) {
@@ -36,10 +36,13 @@ Scenario.prototype.createLoop = function (ageGroup, n) {
             break;
         case "teen":
             obj = this.teenObj;
+            break;
         case "adult":
             obj = this.adultObj;
+            break;
         case "senior":
             obj = this.seniorObj;
+            break;
     }
     let type = "sick";
     let {radius, vel, color, age} = obj
@@ -58,6 +61,7 @@ Scenario.prototype.createLoop = function (ageGroup, n) {
             age, 
             ctx : this.ctx
         })
+        console.log("color: ",person.color)
         person.draw()
     }
 }
