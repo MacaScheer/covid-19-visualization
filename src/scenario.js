@@ -5,6 +5,7 @@ function Scenario(ctx, demoObj) {
     // this.city = obj.city;
     this.population = demoObj.population;
     this.ctx = ctx;
+    // this.censusObject = {};
     // this.area = demoObj.area;
     // this.numRelig = demoObj.numrelig;
     // this.ageDemo = demoObj.ageDemo;
@@ -18,26 +19,25 @@ function Scenario(ctx, demoObj) {
     // let teenLimits = [[1, 5, 1.5], [-1.5, 1.5], [1.5, -1.5], [-1.5, -1.5]];
     // let adultLimits = [[1.8, 1.8], [-1.8, 1.8], [1.8, -1.8], [-1.8, -1.8]];
     // let seniorLimits = [[.4, .4], [-.4, .4], [.4, -.4], [-.4, -.4]];
-    this.minorObj = { radius: 2, color: "#1f7e25", vel: [1, 1.2], age: "1-12"}
-    this.teenObj = { radius: 3, color: "#b21c1c", vel: [1.4, 1.9], age: "13-17"};
-    this.adultObj = { radius: 4, color: "#6666e8", vel: [2, 2.3], age: "18-65"};
-    this.seniorObj = { radius: 3, color: "#60b4f8", vel: [0, 1.8], age: "66 and up"};
+    this.minorObj = { radius: 2, color: "#1f7e25", vel: [.4, 1.2], age: "minor"}
+    this.teenObj = { radius: 2.6, color: "#b21c1c", vel: [.8, 1.9], age: "teen"};
+    this.adultObj = { radius: 2.9, color: "#6666e8", vel: [2, 2.3], age: "adult"};
+    this.seniorObj = { radius: 2.4, color: "#60b4f8", vel: [0, 1.4], age: "senior"};
 }
 
 Scenario.prototype.createPersons = function () {
     // console.log("minors: ", this.minors, " teens: ", this.teens, " adults: ", this.adults, " seniors: ", this.seniors)
-    this.createLoop("minor", this.minors)
-    this.createLoop("teen", this.teens)
-    this.createLoop("adult", this.adults)  //this.adults)
-    this.createLoop("senior", this.seniors)
+    this.createLoop("minor", this.minors);
+    this.createLoop("teen", this.teens);
+    this.createLoop("adult", this.adults);
+    this.createLoop("senior", this.seniors);
 }
-Scenario.prototype.randomSelector = function (lowerLimit, upperLimit) {
-    
-    let rand = Math.floor(Math.random() * upperLimit) + lowerLimit
+
+Scenario.prototype.randomSelector = function (lowerLimit, upperLimit) {    
+    let rand = (Math.random() * upperLimit) + lowerLimit
     let sign1 = [-1, 1][Math.floor(Math.random() * 2)];
-    return sign1 * rand
-
-
+    let answ = sign1 * rand
+    return answ
 }
 Scenario.prototype.createLoop = function (ageGroup, n) {
     switch (ageGroup) {
@@ -57,6 +57,7 @@ Scenario.prototype.createLoop = function (ageGroup, n) {
     let type = "sick";
     let {radius, color, age} = obj
     for (let i = 0; i < n; i++) {
+        let name = `${i}-${age}`;
         let pos1 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 1260
         let pos2 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 650
         let vel = [this.randomSelector(obj.vel[0], obj.vel[1]), this.randomSelector(obj.vel[0], obj.vel[1])]
@@ -67,10 +68,13 @@ Scenario.prototype.createLoop = function (ageGroup, n) {
             pos,
             vel,
             color,
-            age, 
+            age,
+            name,
             ctx : this.ctx
         })
+        // this.censusObject[pos] = vel
         person.draw()
+
     }
 }
 Scenario.prototype.requestData = function () {
