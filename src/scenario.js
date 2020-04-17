@@ -14,10 +14,14 @@ function Scenario(ctx, demoObj) {
     this.seniors = demoObj.population * demoObj.percentSeniors;
     this.popDensity = Math.floor(this.area / this.population);
     // this.size
-    this.minorObj = { radius: 2, color: "#1f7e25", vel: [-.2,.2], age: "1-12"}
-    this.teenObj = { radius: 3, color: "#b21c1c", vel: [1.5,-1.5], age: "13-17"};
-    this.adultObj = { radius: 4, color: "#6666e8", vel: [-1.8,-1.8], age: "18-65"};
-    this.seniorObj = { radius: 3, color: "#60b4f8", vel: [.4,.4], age: "66 and up"};
+    // let minorLimit;
+    // let teenLimits = [[1, 5, 1.5], [-1.5, 1.5], [1.5, -1.5], [-1.5, -1.5]];
+    // let adultLimits = [[1.8, 1.8], [-1.8, 1.8], [1.8, -1.8], [-1.8, -1.8]];
+    // let seniorLimits = [[.4, .4], [-.4, .4], [.4, -.4], [-.4, -.4]];
+    this.minorObj = { radius: 2, color: "#1f7e25", vel: [1, 1.2], age: "1-12"}
+    this.teenObj = { radius: 3, color: "#b21c1c", vel: [1.4, 1.9], age: "13-17"};
+    this.adultObj = { radius: 4, color: "#6666e8", vel: [2, 2.3], age: "18-65"};
+    this.seniorObj = { radius: 3, color: "#60b4f8", vel: [0, 1.8], age: "66 and up"};
 }
 
 Scenario.prototype.createPersons = function () {
@@ -27,9 +31,15 @@ Scenario.prototype.createPersons = function () {
     this.createLoop("adult", this.adults)  //this.adults)
     this.createLoop("senior", this.seniors)
 }
+Scenario.prototype.randomSelector = function (lowerLimit, upperLimit) {
+    
+    let rand = Math.floor(Math.random() * upperLimit) + lowerLimit
+    let sign1 = [-1, 1][Math.floor(Math.random() * 2)];
+    return sign1 * rand
 
+
+}
 Scenario.prototype.createLoop = function (ageGroup, n) {
-    console.log("age group: ", ageGroup, n)
     switch (ageGroup) {
         case "minor":
             obj = this.minorObj;
@@ -45,12 +55,11 @@ Scenario.prototype.createLoop = function (ageGroup, n) {
             break;
     }
     let type = "sick";
-    let {radius, vel, color, age} = obj
+    let {radius, color, age} = obj
     for (let i = 0; i < n; i++) {
-        let pos1 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50)
-        let pos2 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50)
-        if (pos1 > 1260) pos1 = 1260
-        if (pos2 > 650) pos2 = 650
+        let pos1 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 1260
+        let pos2 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 650
+        let vel = [this.randomSelector(obj.vel[0], obj.vel[1]), this.randomSelector(obj.vel[0], obj.vel[1])]
         let pos = [pos1, pos2]
         let person = new MovingPerson({
             type,
@@ -61,7 +70,6 @@ Scenario.prototype.createLoop = function (ageGroup, n) {
             age, 
             ctx : this.ctx
         })
-        console.log("color: ",person.color)
         person.draw()
     }
 }
