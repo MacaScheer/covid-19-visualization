@@ -28,10 +28,10 @@ function Scenario(ctx, demoObj, demSick) {
     // let teenLimits = [[1, 5, 1.5], [-1.5, 1.5], [1.5, -1.5], [-1.5, -1.5]];
     // let adultLimits = [[1.8, 1.8], [-1.8, 1.8], [1.8, -1.8], [-1.8, -1.8]];
     // let seniorLimits = [[.4, .4], [-.4, .4], [.4, -.4], [-.4, -.4]];
-    this.minorObj = { radius: 2, color: "#1f7e25", vel: [.4, 1.2], age: "minor"}
-    this.teenObj = { radius: 2.6, color: "#b21c1c", vel: [.8, 1.9], age: "teen"};
-    this.adultObj = { radius: 2.9, color: "#6666e8", vel: [1, 2.3], age: "adult"};
-    this.seniorObj = { radius: 2.4, color: "#60b4f8", vel: [1, 1.4], age: "senior"};
+    // this.minorObj = { radius: 2, color: "#1f7e25", vel: [.4, 1.2], age: "minor"}
+    // this.teenObj = { radius: 2.6, color: "#b21c1c", vel: [.8, 1.9], age: "teen"};
+    // this.adultObj = { radius: 2.9, color: "#6666e8", vel: [1, 2.3], age: "adult"};
+    // this.seniorObj = { radius: 2.4, color: "#60b4f8", vel: [1, 1.4], age: "senior"};
     this.minors = [];
     this.teens = [];
     this.adults = [];
