@@ -4,8 +4,8 @@ const Util = {
         childClass.prototype.constructor = childClass;
     },
     randomVec(length) {
-        
-
+        const deg = 2 * Math.PI * Math.random();
+        return Util.scale([Math.sin(deg), Math.cos(deg)], length)
     },
     dist(pos1, pos2) {
         return Math.sqrt(
@@ -20,7 +20,7 @@ const Util = {
         return Util.dist([0,0], vec)
     },
     scale(vec, m) {
-        return [vec[0]]
+        return [vec[0] * m, vec[1] * m]
     }
     
 }

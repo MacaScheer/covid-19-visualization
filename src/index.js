@@ -15,7 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
         percentAdults : .45,
         percentSeniors : .20
     }
-    const scen = new Scenario(ctx, demoObj);
+    let demSick = {
+        minors: 0,
+        teens: 0,
+        adults: 2,
+        seniors: 1
+    }
+    const scen = new Scenario(ctx, demoObj, demSick);
     scen.createPersons()
     // const mP = new MovingPerson({
     //     type: "sick",

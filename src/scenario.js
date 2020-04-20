@@ -1,7 +1,8 @@
 const MovingPerson = require("./moving_person.js")
 const Locale = require("./locale.js")
 
-function Scenario(ctx, demoObj) {
+function Scenario(ctx, demoObj, demSick) {
+    
     // this.city = obj.city;
     this.population = demoObj.population;
     this.ctx = ctx;
@@ -9,10 +10,14 @@ function Scenario(ctx, demoObj) {
     // this.area = demoObj.area;
     // this.numRelig = demoObj.numrelig;
     // this.ageDemo = demoObj.ageDemo;
-    this.minors = demoObj.population * demoObj.percentMinors;
-    this.teens = demoObj.population * demoObj.percentTeens;
-    this.adults = demoObj.population * demoObj.percentAdults;
-    this.seniors = demoObj.population * demoObj.percentSeniors;
+    let numSickMinors = demSick.minors;
+    let numSickTeens = demSick.teens;
+    let numSickAdults = demSick.adults;
+    let numSickSeniors = demSick.seniors;
+    this.minors = (demoObj.population * demoObj.percentMinors) - numSickMinors;
+    this.teens = (demoObj.population * demoObj.percentTeens) - numSickTeens;
+    this.adults = (demoObj.population * demoObj.percentAdults) - numSickAdults;
+    this.seniors = (demoObj.population * demoObj.percentSeniors) - numSickSeniors;
     this.popDensity = Math.floor(this.area / this.population);
     // this.size
     // let minorLimit;
@@ -23,7 +28,22 @@ function Scenario(ctx, demoObj) {
     this.teenObj = { radius: 2.6, color: "#b21c1c", vel: [.8, 1.9], age: "teen"};
     this.adultObj = { radius: 2.9, color: "#6666e8", vel: [1, 2.3], age: "adult"};
     this.seniorObj = { radius: 2.4, color: "#60b4f8", vel: [1, 1.4], age: "senior"};
+    this.minors = [];
+    this.teens = [];
+    this.adults = [];
+    this.seniors = [];
 }
+
+Scenario.BG_COLOR = "#000000";
+Scenario.DIM_X = 1000;
+Scenario.DIM_Y = 600;
+Scenario.FPS = 32;
+Scenario.NUM_PPL = 20;
+Scenario.NUM_MINORS = 3;
+Scenario.NUM_TEENS = 4;
+Scenario.NUM_ADULTS = 8;
+Scenario.NUM_SENIORS = 5;
+Scenario.NUM_SICK = 3;
 
 Scenario.prototype.createPersons = function () {
     // console.log("minors: ", this.minors, " teens: ", this.teens, " adults: ", this.adults, " seniors: ", this.seniors)
@@ -54,7 +74,7 @@ Scenario.prototype.createLoop = function (ageGroup, n) {
             obj = this.seniorObj;
             break;
     }
-    let type = "sick";
+    // let type = "sick";
     let {radius, color, age} = obj
     for (let i = 0; i < n; i++) {
         let name = `${i}-${age}`;

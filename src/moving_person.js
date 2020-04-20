@@ -1,5 +1,5 @@
 const Scenario = require("./scenario.js");
-
+const Game = require("./game.js");
 
 function MovingPerson(obj) {
         this.type = obj.type;
@@ -24,7 +24,7 @@ MovingPerson.prototype.draw = function (pos = this.pos) {
         this.move(pos)
         ctx.strokeStyle = "#000000";
         // ctx.clearRect()
-        console.log("Positon Object:", this.currPosObj)
+        // console.log("Positon Object:", this.currPosObj)
 }
 
 // was async 
@@ -52,6 +52,37 @@ MovingPerson.prototype.sleepFunction = function (ms) {
         return new Promise(res => setTimeout(res, ms));
 };
 
+
+
+MovingPerson.prototype.collideWith = function collideWith(otherPerson) {
+        
+};
+MovingPerson.prototype.isCollidedWith = function isCollidedWith(otherPerson) {
+        const centerDist = Util.dist(this.pos, otherPerson.pos);
+        return centerDist < (this.radius + otherPerson.radius);
+};
+MovingPerson.prototype.isWrappable = true;
+const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
+MovingPerson.prototype.move = function move(timeDelta) {
+        //timeDelta is number of milliseconds since late move
+        // if computer is busy the time delta will be larger
+        // in this case the MovingPerson should move farther in this frame
+        // velocity of person is how far it should move in 1/60th of a second
+        const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
+                offsetX = this.vel[0] * velocityScale,
+                offsetY = this.vel[1] * velocityScale;
+        this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+        if (this.game.isOutOfBounds(this.pos)) {
+                if (this.isWrappable) {
+                        this.pos = this.game.wrap(this.pos)
+                } else {
+                        this.remove()
+                }
+        }
+};
+MovingPerson.prototype.remove = function remove() {
+        this.game.remove(this);
+};
 // MovingPerson.prototype.asyncMove = function () {
 //         return this.move(vel);
 // };
