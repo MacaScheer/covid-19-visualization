@@ -9,11 +9,12 @@ function MovingPerson(obj) {
         this.color = obj.color;
         this.age = obj.age;
         this.ctx = obj.ctx;
-        let currPosObj = {};
+        this.name = obj.name;
+        this.currPosObj = {};
         // type will determine color and velocity, will represent age
 }
 MovingPerson.prototype.draw = function (pos = this.pos) {
-        currPost[]
+        this.currPosObj[this.name] = [pos, this.vel];
         let ctx = this.ctx;
         ctx.fillStyle = this.color;
         // ctx.strokeStyle = this.color
@@ -22,7 +23,8 @@ MovingPerson.prototype.draw = function (pos = this.pos) {
         ctx.fill();
         this.move(pos)
         ctx.strokeStyle = "#000000";
-
+        // ctx.clearRect()
+        console.log("Positon Object:", this.currPosObj)
 }
 
 // was async 

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const canvas = document.getElementById("canvas-space");
     const ctx = canvas.getContext("2d")
     let demoObj = {
-        population : 1200,
+        population : 100,
         percentMinors : .15,
         percentTeens : .20,
         percentAdults : .45,
