@@ -1,4 +1,8 @@
-const MovingPerson = require("./moving_person.js")
+const MovingPerson = require("./moving_person.js");
+const Minor = require("./minor.js");
+const Teen = require("./teen.js");
+const Adult = require("./adult.js");
+const Senior = require("./senior.js");
 const Locale = require("./locale.js")
 
 function Scenario(ctx, demoObj, demSick) {
@@ -32,6 +36,7 @@ function Scenario(ctx, demoObj, demSick) {
     this.teens = [];
     this.adults = [];
     this.seniors = [];
+    this.createPersons();
 }
 
 Scenario.BG_COLOR = "#000000";

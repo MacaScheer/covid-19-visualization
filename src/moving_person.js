@@ -28,29 +28,29 @@ MovingPerson.prototype.draw = function (pos = this.pos) {
 }
 
 // was async 
-MovingPerson.prototype.move = async function (pos) {
-        await this.sleepFunction(1);
-        let x = pos[0];
-        let y = pos[1];
-        let newPos;
+// MovingPerson.prototype.move = async function (pos) {
+//         await this.sleepFunction(1);
+//         let x = pos[0];
+//         let y = pos[1];
+//         let newPos;
 
-        // turn them around when hitting the perimeter
-        if (x + this.vel[0] >= 1650 || x + this.vel[0] <= 0) {
-                this.vel[0] *= -1;
-        } 
-        if (y + this.vel[1] >= 1050 || y + this.vel[1] <= 0) {
-                this.vel[1] *= -1
-        }
-        // turn them around when the collide
+//         // turn them around when hitting the perimeter
+//         if (x + this.vel[0] >= 1650 || x + this.vel[0] <= 0) {
+//                 this.vel[0] *= -1;
+//         } 
+//         if (y + this.vel[1] >= 1050 || y + this.vel[1] <= 0) {
+//                 this.vel[1] *= -1
+//         }
+//         // turn them around when the collide
         
-        newPos = [pos[0] + this.vel[0], pos[1] + this.vel[1]]
-        // this.asyncMove()
-        this.draw(newPos)
+//         newPos = [pos[0] + this.vel[0], pos[1] + this.vel[1]]
+//         // this.asyncMove()
+//         this.draw(newPos)
         
-}
-MovingPerson.prototype.sleepFunction = function (ms) {
-        return new Promise(res => setTimeout(res, ms));
-};
+// }
+// MovingPerson.prototype.sleepFunction = function (ms) {
+//         return new Promise(res => setTimeout(res, ms));
+// };
 
 
 
