@@ -115,7 +115,7 @@ eval("\n\n//# sourceURL=webpack:///./src/game.js?");
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("console.log(\"webpack is working!\")\n\nconst Scenario = __webpack_require__(/*! ./scenario.js */ \"./src/scenario.js\");\nconst ScenarioView = __webpack_require__(/*! ./scenario_view */ \"./src/scenario_view.js\");\n// const Menu = require(\"./menu.js\")\nconst MovingPerson = __webpack_require__(/*! ./moving_person.js */ \"./src/moving_person.js\");\nwindow.MovingPerson = MovingPerson;\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n    const canvas = document.getElementById(\"canvas-space\");\n    const ctx = canvas.getContext(\"2d\");\n    const scen = new Scenario(ctx, demoObj, demSick);\n    new ScenarioView(scen, ctx).start()\n    // const menu = new Menu()\n    // menu.requestParameters()\n})\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("console.log(\"webpack is working!\")\n\nconst Scenario = __webpack_require__(/*! ./scenario.js */ \"./src/scenario.js\");\nconst ScenarioView = __webpack_require__(/*! ./scenario_view */ \"./src/scenario_view.js\");\nconst Menu = __webpack_require__(/*! ./menu.js */ \"./src/menu.js\")\nconst MovingPerson = __webpack_require__(/*! ./moving_person.js */ \"./src/moving_person.js\");\nwindow.MovingPerson = MovingPerson;\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n    const canvas = document.getElementById(\"canvas-space\");\n    const ctx = canvas.getContext(\"2d\");\n    const scen = new Scenario(ctx, demoObj, demSick);\n    new ScenarioView(scen, ctx).start()\n    // const menu = new Menu()\n    // menu.requestParameters()\n})\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -127,6 +127,17 @@ eval("console.log(\"webpack is working!\")\n\nconst Scenario = __webpack_require
 /***/ (function(module, exports) {
 
 eval("function Locale(obj) {\n    \n}\n\nmodule.exports = Locale;\n\n//# sourceURL=webpack:///./src/locale.js?");
+
+/***/ }),
+
+/***/ "./src/menu.js":
+/*!*********************!*\
+  !*** ./src/menu.js ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const Scenario = __webpack_require__(/*! ./scenario.js */ \"./src/scenario.js\")\nconst Locale = __webpack_require__(/*! ./locale.js */ \"./src/locale.js\")\nclass Menu{\n    constructor() {\n        \n    }\n}\n\nMenu.prototype.requestParameters = function () {\n    \n}\n\nMenu.prototype.generateScenario = function (obj) {\n    \n    const scenario = new Scenario();\n}\n\nmodule.exports = Menu;\n\n//# sourceURL=webpack:///./src/menu.js?");
 
 /***/ }),
 
@@ -170,7 +181,7 @@ eval("const MovingPerson = __webpack_require__(/*! ./moving_person.js */ \"./src
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Util = __webpack_require__(/*! ./util */ \"./src/util.js\");\nconst MovingPerson = __webpack_require__(/*! ./moving_person */ \"./src/moving_person.js\");\nconst Scenario = __webpack_require__(/*! ./scenario */ \"./src/scenario.js\");\n\nfunction ScenarioView() {\n    \n}\nScenarioView.prototype.start = function start() {\n    let demoObj = {\n        population: 100,\n        percentMinors: .15,\n        percentTeens: .20,\n        percentAdults: .45,\n        percentSeniors: .20\n    }\n    let demSick = {\n        minors: 0,\n        teens: 0,\n        adults: 2,\n        seniors: 1\n    }\n    const scen = new Scenario(ctx, demoObj, demSick);\n    // scen\n}\n\nScenarioView.prototype.start = function start() {\n    this.bindKeyHandlers();\n    this.lastTime = 0;\n    // start the animation\n    requestAnimationFrame(this.animate.bind(this));\n};\n\nmodule.exports = ScenarioView;\n\n//# sourceURL=webpack:///./src/scenario_view.js?");
+eval("const Util = __webpack_require__(/*! ./util */ \"./src/util.js\");\nconst MovingPerson = __webpack_require__(/*! ./moving_person */ \"./src/moving_person.js\");\nconst Scenario = __webpack_require__(/*! ./scenario */ \"./src/scenario.js\");\n\nfunction ScenarioView(scenario, ctx) {\n    this.ctx = ctx;\n    this.scenario = scenario;\n}\n\nScenarioView.prototype.bindKeyHandlers = function bindKeyHandlers() {\n    // const \n    // Object.keys()\n}\n\nScenarioView.prototype.start = function start() {\n    let demoObj = {\n        population: 100,\n        percentMinors: .15,\n        percentTeens: .20,\n        percentAdults: .45,\n        percentSeniors: .20\n    }\n    let demSick = {\n        minors: 0,\n        teens: 0,\n        adults: 2,\n        seniors: 1\n    }\n    const scen = new Scenario(ctx, demoObj, demSick);\n    // scen\n}\n\nScenarioView.prototype.start = function start() {\n    // this.bindKeyHandlers();\n    this.lastTime = 0;\n    // start the animation\n    requestAnimationFrame(this.animate.bind(this));\n};\nScenarioView.prototype.animate = function animate(time) {\n    const timeDelta = time - this.lastTime;\n    this.scenario.step(timeDelta);\n    this.scenario.draw(this.ctx);\n    this.lastTime = time;\n    requestAnimationFrame(this.animate.bind(this))\n}\nmodule.exports = ScenarioView;\n\n//# sourceURL=webpack:///./src/scenario_view.js?");
 
 /***/ }),
 

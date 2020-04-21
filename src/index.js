@@ -2,7 +2,7 @@ console.log("webpack is working!")
 
 const Scenario = require("./scenario.js");
 const ScenarioView = require("./scenario_view");
-// const Menu = require("./menu.js")
+const Menu = require("./menu.js")
 const MovingPerson = require("./moving_person.js");
 window.MovingPerson = MovingPerson;
 
