@@ -23,7 +23,8 @@ function Scenario(ctx, demoObj, demSick) {
     this.adults = [];
     this.seniors = [];
     this.infected = [];
-    this.createPersons();
+    // this.createPersons();
+    this.addPersons()
     // this.city = obj.city;
     // this.censusObject = {};
     // this.area = demoObj.area;
@@ -65,6 +66,16 @@ Scenario.prototype.add = function add(object) {
     }
 }
 
+Scenario.prototype.addPersons = function addPerson() {
+    
+}
+
+Scenario.prototype.randomPosition = function randomPosition() {
+    let pos1 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 1260
+    let pos2 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 650
+    return [pos1, pos2]
+}
+
 Scenario.prototype.createPersons = function () {
     // console.log("minors: ", this.minors, " teens: ", this.teens, " adults: ", this.adults, " seniors: ", this.seniors)
     // this.createLoop("minor", this.minors, this.sickMinors);
@@ -73,12 +84,12 @@ Scenario.prototype.createPersons = function () {
     // this.createLoop("senior", this.seniors, this.sickSeniors);
 }
 
-Scenario.prototype.randomSelector = function (lowerLimit, upperLimit) {    
-    let rand = (Math.random() * upperLimit) + lowerLimit
-    let sign1 = [-1, 1][Math.floor(Math.random() * 2)];
-    let answ = sign1 * rand
-    return answ
-}
+// Scenario.prototype.randomSelector = function (lowerLimit, upperLimit) {    
+//     let rand = (Math.random() * upperLimit) + lowerLimit
+//     let sign1 = [-1, 1][Math.floor(Math.random() * 2)];
+//     let answ = sign1 * rand
+//     return answ
+// }
 
 Scenario.prototype.createLoop = function (ageGroup, n, s) {
     switch (ageGroup) {
@@ -97,24 +108,26 @@ Scenario.prototype.createLoop = function (ageGroup, n, s) {
     }
     // let type = "sick";
     let {radius, color, age} = obj
-    for (let i = 0; i < n; i++) {
-        let name = `${i}-${age}`;
-        let pos1 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 1260
-        let pos2 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 650
-        let vel = [this.randomSelector(obj.vel[0], obj.vel[1]), this.randomSelector(obj.vel[0], obj.vel[1])]
-        let pos = [pos1, pos2]
-        let person = new MovingPerson({
-            type,
-            radius,
-            pos,
-            vel,
-            color,
-            age,
-            name,
-            ctx : this.ctx
-        })
+    for (let i = 0; i < n-s; i++) {
+        // let name = `${i}-${age}`;
+        
+        // let vel = [this.randomSelector(obj.vel[0], obj.vel[1]), this.randomSelector(obj.vel[0], obj.vel[1])]
+        let pos = this.randomPosition();
+        // let person = new MovingPerson({
+        //     type,
+        //     radius,
+        //     pos,
+        //     vel,
+        //     color,
+        //     age,
+        //     ctx : this.ctx
+        // })
         // this.censusObject[pos] = vel
         person.draw()
+    }
+    for (let i = 0; i < s; i++){
+        let name = `${i}-${age}`;
+        let pos = this.randomPosition();
 
     }
 }
