@@ -10,19 +10,20 @@ function MovingPerson(obj) {
         this.age = obj.age;
         this.ctx = obj.ctx;
         this.name = obj.name;
-        this.currPosObj = {};
+        // this.currPosObj = {};
+        this.scenario = options.scenario;
         // type will determine color and velocity, will represent age
 }
 MovingPerson.prototype.draw = function (pos = this.pos) {
-        this.currPosObj[this.name] = [pos, this.vel];
+        // this.currPosObj[this.name] = [pos, this.vel];
         let ctx = this.ctx;
         ctx.fillStyle = this.color;
         // ctx.strokeStyle = this.color
         ctx.beginPath();
         ctx.arc(pos[0], pos[1], this.radius, 0, 2 * Math.PI, true);
         ctx.fill();
-        this.move(pos)
-        ctx.strokeStyle = "#000000";
+        // this.move(pos)
+        // ctx.strokeStyle = "#000000";
         // ctx.clearRect()
         // console.log("Positon Object:", this.currPosObj)
 }
