@@ -3,7 +3,7 @@ const MovingPerson = require("./moving_person")
 
 
 const DEFAULTS = {
-    RADIUS: 2.6, COLOR: "#6666e8", SPEED: 5, AGE: "adult"
+    RADIUS: 2.6, COLOR: "#6666e8", SPEED: 5, AGE: "adult" //, SICK: false
 }
 
 function Adult(options) {
@@ -12,7 +12,6 @@ function Adult(options) {
     options.pos = options.pos || options.game.randomPosition();
     options.radius = DEFAULTS.RADIUS;
     options.vel = options.vel || Util.randomVec(DEFAULTS.SPEED)
-
     MovingPerson.call(this.options)
 }
 Util.inherits(Adult, MovingPerson);
