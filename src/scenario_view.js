@@ -1,6 +1,6 @@
 const Util = require("./util");
-const MovingPerson = require("./moving_person");
-const Scenario = require("./scenario");
+// const MovingPerson = require("./moving_person");
+// const Scenario = require("./scenario");
 
 function ScenarioView(scenario, ctx) {
     this.ctx = ctx;

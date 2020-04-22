@@ -1,6 +1,6 @@
 const Util = {
     inherits: function inherits(childClass, parentClass) {
-        childClass.prototype = Object.create(ParentClass.prototype);
+        childClass.prototype = Object.create(parentClass.prototype);
         childClass.prototype.constructor = childClass;
     },
     randomVec(length) {

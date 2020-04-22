@@ -7,13 +7,14 @@ const DEFAULTS = {
 }
 
 function Minor(options) {
-    options = options || {};
-    options.color = DEFAULTS.COLOR;
-    options.pos = options.pos || options.game.randomPosition();
-    options.radius = DEFAULTS.RADIUS;
-    options.vel = options.vel || Util.randomVec(DEFAULTS.SPEED)
-
-    MovingPerson.call(this.options)
+    this.options = options || {};
+    this.options.color = DEFAULTS.COLOR;
+    this.options.pos = options.pos || options.game.randomPosition();
+    this.options.radius = DEFAULTS.RADIUS;
+    this.options.vel = options.vel || Util.randomVec(DEFAULTS.SPEED)
+    // options.sick = options.sick
+    // MovingPerson.call(this.options)
+    new MovingPerson(this.options)
 }
 Util.inherits(Minor, MovingPerson);
 

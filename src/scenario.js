@@ -1,4 +1,4 @@
-const MovingPerson = require("./moving_person.js");
+// const MovingPerson = require("./moving_person.js");
 const Minor = require("./minor.js");
 const Teen = require("./teen.js");
 const Adult = require("./adult.js");
@@ -9,10 +9,10 @@ function Scenario(ctx, demoObj, demSick) {
     
     this.population = demoObj.population;
     this.ctx = ctx;
-    let sickMinors = demSick.minors;
-    let sickTeens = demSick.teens;
-    let sickAdults = demSick.adults;
-    let sickSeniors = demSick.seniors;
+    this.sickMinors = demSick.minors;
+    this.sickTeens = demSick.teens;
+    this.sickAdults = demSick.adults;
+    this.sickSeniors = demSick.seniors;
     this.minors = demoObj.population * demoObj.percentMinors;
     this.teens = demoObj.population * demoObj.percentTeens;
     this.adults = demoObj.population * demoObj.percentAdults;
@@ -66,8 +66,14 @@ Scenario.prototype.add = function add(object) {
     }
 }
 
-Scenario.prototype.addPersons = function addPerson() {
-    
+Scenario.prototype.addPersons = function addPersons() {
+    // iterate through each of the age groups, first instantiating the healthy ones from 
+    // NUM_MINORS - sickMinors as healthy, then the sickMinors, as infected
+    // 
+    this.createLoop("minor", this.NUM_MINORS, this.sickMinors)
+    this.createLoop("teen", this.NUM_TEENS, this.sickTeens);
+    this.createLoop("adult", this.NUM_ADULTS, this.sickAdults);
+    this.createLoop("senior", this.NUM_SENIORS, this.sickSeniors);
 }
 
 Scenario.prototype.randomPosition = function randomPosition() {
@@ -76,13 +82,13 @@ Scenario.prototype.randomPosition = function randomPosition() {
     return [pos1, pos2]
 }
 
-Scenario.prototype.createPersons = function () {
+// Scenario.prototype.createPersons = function () {
     // console.log("minors: ", this.minors, " teens: ", this.teens, " adults: ", this.adults, " seniors: ", this.seniors)
     // this.createLoop("minor", this.minors, this.sickMinors);
-    this.createLoop("teen", this.teens, this.sickTeens);
+    // this.createLoop("teen", this.teens, this.sickTeens);
     // this.createLoop("adult", this.adults, this.sickAdults);
     // this.createLoop("senior", this.seniors, this.sickSeniors);
-}
+// }
 
 // Scenario.prototype.randomSelector = function (lowerLimit, upperLimit) {    
 //     let rand = (Math.random() * upperLimit) + lowerLimit
@@ -91,28 +97,44 @@ Scenario.prototype.createPersons = function () {
 //     return answ
 // }
 
+Scenario.prototype.allObjects = function allObjects() {
+    return [].concat(this.minors, this.teens, this.adults, this.seniors);
+};
+
+Scenario.prototype.movePersons = function movePersons(delta) {
+    this.allObjects().forEach(function (object) {
+        object.move(delta);
+    });
+};
+Scenario.prototype.step = function step(delta) {
+    this.movePersons(delta);
+    this.checkCollisions();
+};
+
 Scenario.prototype.createLoop = function (ageGroup, n, s) {
     switch (ageGroup) {
         case "minor":
-            obj = this.minorObj;
+            obj = Minor;
             break;
         case "teen":
-            obj = this.teenObj;
+            obj = Teen;
             break;
         case "adult":
-            obj = this.adultObj;
+            obj = Adult;
             break;
         case "senior":
-            obj = this.seniorObj;
+            obj = Senior;
             break;
     }
     // let type = "sick";
-    let {radius, color, age} = obj
+    // let {radius, color, age} = obj
     for (let i = 0; i < n-s; i++) {
         // let name = `${i}-${age}`;
-        
         // let vel = [this.randomSelector(obj.vel[0], obj.vel[1]), this.randomSelector(obj.vel[0], obj.vel[1])]
         let pos = this.randomPosition();
+        let type = "well"
+        let person = new obj({ type, pos })
+        this.add(person)
         // let person = new MovingPerson({
         //     type,
         //     radius,
@@ -123,11 +145,15 @@ Scenario.prototype.createLoop = function (ageGroup, n, s) {
         //     ctx : this.ctx
         // })
         // this.censusObject[pos] = vel
-        person.draw()
+        // person.draw()
     }
     for (let i = 0; i < s; i++){
-        let name = `${i}-${age}`;
+        // let name = `${i}-${age}`;
         let pos = this.randomPosition();
+        let type = "infected"
+        let person = new obj({ type, pos })
+        this.add(person);
+        this.infected.push(person)
 
     }
 }
