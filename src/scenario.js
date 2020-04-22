@@ -51,7 +51,12 @@ Scenario.NUM_TEENS = this.teens || 4;
 Scenario.NUM_ADULTS = this.adults || 8;
 Scenario.NUM_SENIORS = 5;
 Scenario.NUM_SICK = (this.sickMinors + this.sickTeens + this.sickAdults + this.sickSeniors) || 3;
-
+Scenario.prototype.randomPosition = function randomPosition() {
+    return [
+        Scenario.DIM_X * Math.random(),
+        Scenario.DIM_Y * Math.random()
+    ];
+};
 Scenario.prototype.add = function add(object) {
     if (object instanceof Minor) {
         this.minors.push(object)
@@ -76,11 +81,11 @@ Scenario.prototype.addPersons = function addPersons() {
     this.createLoop("senior", this.NUM_SENIORS, this.sickSeniors);
 }
 
-Scenario.prototype.randomPosition = function randomPosition() {
-    let pos1 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 1260
-    let pos2 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 650
-    return [pos1, pos2]
-}
+// Scenario.prototype.randomPosition = function randomPosition() {
+//     let pos1 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 1260
+//     let pos2 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 650
+//     return [pos1, pos2]
+// }
 
 // Scenario.prototype.createPersons = function () {
     // console.log("minors: ", this.minors, " teens: ", this.teens, " adults: ", this.adults, " seniors: ", this.seniors)
@@ -97,14 +102,40 @@ Scenario.prototype.randomPosition = function randomPosition() {
 //     return answ
 // }
 
+
+
 Scenario.prototype.allObjects = function allObjects() {
     return [].concat(this.minors, this.teens, this.adults, this.seniors);
+};
+
+Scenario.prototype.draw = function draw(ctx) {
+    ctx.clearRect(0, 0, Scenario.DIM_X, Scenario.DIM_Y);
+    ctx.fillStyle = Scenario.BG_COLOR;
+    ctx.fillRect(0, 0, Scenario.DIM_X, Scenario.DIM_Y);
+
+    this.allObjects().forEach(function (object) {
+        object.draw(ctx);
+    });
 };
 
 Scenario.prototype.movePersons = function movePersons(delta) {
     this.allObjects().forEach(function (object) {
         object.move(delta);
     });
+};
+Scenario.prototype.checkCollisions = function checkCollisions() {
+    const allObjects = this.allObjects();
+    for (let i = 0; i < allObjects.length; i++) {
+        for (let j = 0; j < allObjects.length; j++) {
+            const obj1 = allObjects[i];
+            const obj2 = allObjects[j];
+
+            if (obj1.isCollidedWith(obj2)) {
+                const collision = obj1.collideWith(obj2);
+                if (collision) return;
+            }
+        }
+    }
 };
 Scenario.prototype.step = function step(delta) {
     this.movePersons(delta);

@@ -1,5 +1,5 @@
-// const Scenario = require("./scenario.js");
-const Game = require("./game.js");
+const Scenario = require("./scenario.js");
+const Util = require("./util")
 
 function MovingPerson(obj) {
         this.type = obj.type;
@@ -13,13 +13,13 @@ function MovingPerson(obj) {
         this.scenario = obj.scenario;
         // type will determine color and velocity, will represent age
 }
-MovingPerson.prototype.draw = function (pos = this.pos) {
+MovingPerson.prototype.draw = function (ctx) {
         // this.currPosObj[this.name] = [pos, this.vel];
-        let ctx = this.ctx;
+        // let ctx = this.ctx;
         ctx.fillStyle = this.color;
         // ctx.strokeStyle = this.color
         ctx.beginPath();
-        ctx.arc(pos[0], pos[1], this.radius, 0, 2 * Math.PI, true);
+        ctx.arc(this.options.pos[0], this.options.pos[1], this.radius, 0, 2 * Math.PI, true);
         ctx.fill();
         // this.move(pos)
         // ctx.strokeStyle = "#000000";
@@ -58,8 +58,8 @@ MovingPerson.prototype.collideWith = function collideWith(otherPerson) {
         
 };
 MovingPerson.prototype.isCollidedWith = function isCollidedWith(otherPerson) {
-        const centerDist = Util.dist(this.pos, otherPerson.pos);
-        return centerDist < (this.radius + otherPerson.radius);
+        const centerDist = Util.dist(this.options.pos, otherPerson.options.pos);
+        return centerDist < (this.options.radius + otherPerson.options.radius);
 };
 MovingPerson.prototype.isWrappable = true;
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
@@ -71,18 +71,17 @@ MovingPerson.prototype.move = function move(timeDelta) {
         const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
         offsetX = this.options.vel[0] * velocityScale,
         offsetY = this.options.vel[1] * velocityScale;
-        debugger
-        this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
-        if (this.game.isOutOfBounds(this.pos)) {
-                if (this.isWrappable) {
-                        this.pos = this.game.wrap(this.pos)
-                } else {
-                        this.remove()
-                }
-        }
+        this.options.pos = [this.options.pos[0] + offsetX, this.options.pos[1] + offsetY];
+        // if (this.scenario.isOutOfBounds(this.options.pos)) {
+        //         if (this.isWrappable) {
+        //                 this.options.pos = this.game.wrap(this.options.pos)
+        //         } else {
+        //                 this.remove()
+        //         }
+        // }
 };
 MovingPerson.prototype.remove = function remove() {
-        this.game.remove(this);
+        this.scenario.remove(this);
 };
 // MovingPerson.prototype.asyncMove = function () {
 //         return this.move(vel);

@@ -1,6 +1,6 @@
 const Util = require("./util");
 // const MovingPerson = require("./moving_person");
-// const Scenario = require("./scenario");
+const Scenario = require("./scenario");
 
 function ScenarioView(scenario, ctx) {
     this.ctx = ctx;
@@ -19,6 +19,7 @@ ScenarioView.prototype.start = function start() {
     requestAnimationFrame(this.animate.bind(this));
 };
 ScenarioView.prototype.animate = function animate(time) {
+    
     const timeDelta = time - this.lastTime;
     this.scenario.step(timeDelta);
     this.scenario.draw(this.ctx);
