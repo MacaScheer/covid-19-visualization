@@ -2,7 +2,6 @@
 const Game = require("./game.js");
 
 function MovingPerson(obj) {
-        debugger
         this.type = obj.type;
         this.radius = obj.radius;
         this.pos = obj.pos;
@@ -10,7 +9,7 @@ function MovingPerson(obj) {
         this.color = obj.color;
         this.age = obj.age;
         this.ctx = obj.ctx;
-        this.name = obj.name;
+        // this.name = obj.name;
         this.scenario = obj.scenario;
         // type will determine color and velocity, will represent age
 }
@@ -69,10 +68,10 @@ MovingPerson.prototype.move = function move(timeDelta) {
         // if computer is busy the time delta will be larger
         // in this case the MovingPerson should move farther in this frame
         // velocity of person is how far it should move in 1/60th of a second
-        debugger
         const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
-                offsetX = this.options.vel[0] * velocityScale,
-                offsetY = this.options.vel[1] * velocityScale;
+        offsetX = this.options.vel[0] * velocityScale,
+        offsetY = this.options.vel[1] * velocityScale;
+        debugger
         this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
         if (this.game.isOutOfBounds(this.pos)) {
                 if (this.isWrappable) {
