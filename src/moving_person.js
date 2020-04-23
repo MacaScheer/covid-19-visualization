@@ -11,18 +11,19 @@ function MovingPerson(obj) {
         this.ctx = obj.ctx;
         // this.name = obj.name;
         this.scenario = obj.scenario;
+        debugger
         // type will determine color and velocity, will represent age
 }
 MovingPerson.prototype.draw = function (ctx) {
         // this.currPosObj[this.name] = [pos, this.vel];
         // let ctx = this.ctx;
-        ctx.fillStyle = this.color;
-        // ctx.strokeStyle = this.color
+        ctx.fillStyle = this.options.color;
+        ctx.strokeStyle = this.color
         ctx.beginPath();
         ctx.arc(this.options.pos[0], this.options.pos[1], this.radius, 0, 2 * Math.PI, true);
         ctx.fill();
         // this.move(pos)
-        // ctx.strokeStyle = "#000000";
+        ctx.strokeStyle = "#000000";
         // ctx.clearRect()
         // console.log("Positon Object:", this.currPosObj)
 }
@@ -68,17 +69,19 @@ MovingPerson.prototype.move = function move(timeDelta) {
         // if computer is busy the time delta will be larger
         // in this case the MovingPerson should move farther in this frame
         // velocity of person is how far it should move in 1/60th of a second
+        debugger
         const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
-        offsetX = this.options.vel[0] * velocityScale,
-        offsetY = this.options.vel[1] * velocityScale;
-        this.options.pos = [this.options.pos[0] + offsetX, this.options.pos[1] + offsetY];
-        // if (this.scenario.isOutOfBounds(this.options.pos)) {
-        //         if (this.isWrappable) {
-        //                 this.options.pos = this.game.wrap(this.options.pos)
-        //         } else {
-        //                 this.remove()
-        //         }
-        // }
+        offsetX = this.vel[0] * velocityScale,
+        offsetY = this.vel[1] * velocityScale;
+        this.options.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+        if (this.scenario.isOutOfBounds(this.options.pos)) {
+                if (this.isWrappable) {
+                        this.pos = this.game.wrap(this.pos)
+                } else {
+                        this.remove()
+                }
+        }
+        console.log("position: ", this.pos, "")
 };
 MovingPerson.prototype.remove = function remove() {
         this.scenario.remove(this);

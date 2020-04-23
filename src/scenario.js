@@ -3,7 +3,8 @@ const Minor = require("./minor.js");
 const Teen = require("./teen.js");
 const Adult = require("./adult.js");
 const Senior = require("./senior.js");
-const Locale = require("./locale.js")
+const Util = require("./util");
+// const Locale = require("./locale.js")
 
 function Scenario(ctx, demoObj, demSick) {
     
@@ -41,7 +42,7 @@ function Scenario(ctx, demoObj, demSick) {
     // this.seniorObj = { radius: 2.4, color: "#60b4f8", vel: [1, 1.4], age: "senior"};
 }
 
-Scenario.BG_COLOR = "#000000";
+Scenario.BG_COLOR = "#ededed";
 Scenario.DIM_X = 1000;
 Scenario.DIM_Y = 600;
 Scenario.FPS = 32;
@@ -75,10 +76,10 @@ Scenario.prototype.addPersons = function addPersons() {
     // iterate through each of the age groups, first instantiating the healthy ones from 
     // NUM_MINORS - sickMinors as healthy, then the sickMinors, as infected
     // 
-    this.createLoop("minor", this.NUM_MINORS, this.sickMinors)
-    this.createLoop("teen", this.NUM_TEENS, this.sickTeens);
+    // this.createLoop("minor", this.NUM_MINORS, this.sickMinors)
+    // this.createLoop("teen", this.NUM_TEENS, this.sickTeens);
     this.createLoop("adult", this.NUM_ADULTS, this.sickAdults);
-    this.createLoop("senior", this.NUM_SENIORS, this.sickSeniors);
+    // this.createLoop("senior", this.NUM_SENIORS, this.sickSeniors);
 }
 
 // Scenario.prototype.randomPosition = function randomPosition() {
@@ -142,6 +143,12 @@ Scenario.prototype.step = function step(delta) {
     this.checkCollisions();
 };
 
+Scenario.prototype.wrap = function wrap(pos) {
+    return [
+        Util.wrap(pos[0], Game.DIM_X), Util.wrap(pos[1], Game.DIM_Y)
+    ];
+};
+
 Scenario.prototype.createLoop = function (ageGroup, n, s) {
     switch (ageGroup) {
         case "minor":
@@ -159,12 +166,14 @@ Scenario.prototype.createLoop = function (ageGroup, n, s) {
     }
     // let type = "sick";
     // let {radius, color, age} = obj
+    let scenario = this;
     for (let i = 0; i < n-s; i++) {
         // let name = `${i}-${age}`;
         // let vel = [this.randomSelector(obj.vel[0], obj.vel[1]), this.randomSelector(obj.vel[0], obj.vel[1])]
         let pos = this.randomPosition();
         let type = "well"
-        let person = new obj({ type, pos })
+        let person = new obj({ type, pos, scenario })
+        // debugger
         this.add(person)
         // let person = new MovingPerson({
         //     type,
@@ -182,12 +191,18 @@ Scenario.prototype.createLoop = function (ageGroup, n, s) {
         // let name = `${i}-${age}`;
         let pos = this.randomPosition();
         let type = "infected"
-        let person = new obj({ type, pos })
+        let person = new obj({ type, pos, scenario })
         this.add(person);
         this.infected.push(person)
 
     }
 }
+
+Scenario.prototype.isOutOfBounds = function isOutOfBounds(pos) {
+    return (pos[0] < 0) || (pos[1] < 0) ||
+        (pos[0] > Scenario.DIM_X) || (pos[1] > Scenario.DIM_Y);
+};
+
 Scenario.prototype.requestData = function () {
     
 }

@@ -7,14 +7,14 @@ const DEFAULTS = {
 }
 
 function Adult(options) {
-    this.options = options || {};
-    this.options.color = DEFAULTS.COLOR;
-    this.options.pos = options.pos || options.game.randomPosition();
-    this.options.radius = DEFAULTS.RADIUS;
-    this.options.vel = options.vel || Util.randomVec(DEFAULTS.SPEED)
-    this.options.type = options.type
-    // MovingPerson.call(this.options)
-    new MovingPerson(this.options)
+    options = options || {};
+    options.color = DEFAULTS.COLOR;
+    options.pos = options.pos || options.game.randomPosition();
+    options.radius = DEFAULTS.RADIUS;
+    options.vel = options.vel || Util.randomVec(DEFAULTS.SPEED)
+    options.type = options.type
+    MovingPerson.call(this, options)
+    // new MovingPerson(this, options)
 }
 Util.inherits(Adult, MovingPerson);
 
