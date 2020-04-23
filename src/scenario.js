@@ -145,7 +145,7 @@ Scenario.prototype.step = function step(delta) {
 
 Scenario.prototype.wrap = function wrap(pos) {
     return [
-        Util.wrap(pos[0], Game.DIM_X), Util.wrap(pos[1], Game.DIM_Y)
+        Util.wrap(pos[0], Scenario.DIM_X), Util.wrap(pos[1], Scenario.DIM_Y)
     ];
 };
 
