@@ -17,10 +17,10 @@ function MovingPerson(obj) {
 MovingPerson.prototype.draw = function (ctx) {
         // this.currPosObj[this.name] = [pos, this.vel];
         // let ctx = this.ctx;
-        ctx.fillStyle = this.options.color;
+        ctx.fillStyle = this.color;
         ctx.strokeStyle = this.color
         ctx.beginPath();
-        ctx.arc(this.options.pos[0], this.options.pos[1], this.radius, 0, 2 * Math.PI, true);
+        ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true);
         ctx.fill();
         // this.move(pos)
         ctx.strokeStyle = "#000000";
@@ -59,8 +59,8 @@ MovingPerson.prototype.collideWith = function collideWith(otherPerson) {
         
 };
 MovingPerson.prototype.isCollidedWith = function isCollidedWith(otherPerson) {
-        const centerDist = Util.dist(this.options.pos, otherPerson.options.pos);
-        return centerDist < (this.options.radius + otherPerson.options.radius);
+        const centerDist = Util.dist(this.pos, otherPerson.pos);
+        return centerDist < (this.radius + otherPerson.radius);
 };
 MovingPerson.prototype.isWrappable = true;
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
