@@ -13,8 +13,8 @@ function Minor(options) {
     this.options.radius = DEFAULTS.RADIUS;
     this.options.vel = options.vel || Util.randomVec(DEFAULTS.SPEED)
     // options.sick = options.sick
-    // MovingPerson.call(this.options)
-    new MovingPerson(this.options)
+    MovingPerson.call(this, options)
+    // new MovingPerson(this.options)
 }
 Util.inherits(Minor, MovingPerson);
 

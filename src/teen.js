@@ -13,8 +13,8 @@ function Teen(options) {
     this.options.radius = DEFAULTS.RADIUS;
     this.options.vel = options.vel || Util.randomVec(DEFAULTS.SPEED)
 
-    // MovingPerson.call(this.options)
-    new MovingPerson(this.options)
+    MovingPerson.call(this, options)
+    // new MovingPerson(this.options)
 }
 Util.inherits(Teen, MovingPerson);
 
