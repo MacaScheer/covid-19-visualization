@@ -24,7 +24,6 @@ function Scenario(ctx, demoObj, demSick) {
     this.adults = [];
     this.seniors = [];
     this.infected = [];
-    // this.createPersons();
     this.addPersons()
     // this.city = obj.city;
     // this.censusObject = {};
@@ -32,14 +31,7 @@ function Scenario(ctx, demoObj, demSick) {
     // this.numRelig = demoObj.numrelig;
     // this.ageDemo = demoObj.ageDemo;
     // this.size
-    // let minorLimit;
-    // let teenLimits = [[1, 5, 1.5], [-1.5, 1.5], [1.5, -1.5], [-1.5, -1.5]];
-    // let adultLimits = [[1.8, 1.8], [-1.8, 1.8], [1.8, -1.8], [-1.8, -1.8]];
-    // let seniorLimits = [[.4, .4], [-.4, .4], [.4, -.4], [-.4, -.4]];
-    // this.minorObj = { radius: 2, color: "#1f7e25", vel: [.4, 1.2], age: "minor"}
-    // this.teenObj = { radius: 2.6, color: "#b21c1c", vel: [.8, 1.9], age: "teen"};
-    // this.adultObj = { radius: 2.9, color: "#6666e8", vel: [1, 2.3], age: "adult"};
-    // this.seniorObj = { radius: 2.4, color: "#60b4f8", vel: [1, 1.4], age: "senior"};
+    
 }
 
 Scenario.BG_COLOR = "#ededed";
@@ -76,32 +68,11 @@ Scenario.prototype.addPersons = function addPersons() {
     // iterate through each of the age groups, first instantiating the healthy ones from 
     // NUM_MINORS - sickMinors as healthy, then the sickMinors, as infected
     // 
-    // this.createLoop("minor", this.NUM_MINORS, this.sickMinors)
-    // this.createLoop("teen", this.NUM_TEENS, this.sickTeens);
+    this.createLoop("minor", this.NUM_MINORS, this.sickMinors)
+    this.createLoop("teen", this.NUM_TEENS, this.sickTeens);
     this.createLoop("adult", this.NUM_ADULTS, this.sickAdults);
-    // this.createLoop("senior", this.NUM_SENIORS, this.sickSeniors);
+    this.createLoop("senior", this.NUM_SENIORS, this.sickSeniors);
 }
-
-// Scenario.prototype.randomPosition = function randomPosition() {
-//     let pos1 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 1260
-//     let pos2 = Math.floor(Math.random(2) * 100 * Math.random(10) * 50) % 650
-//     return [pos1, pos2]
-// }
-
-// Scenario.prototype.createPersons = function () {
-    // console.log("minors: ", this.minors, " teens: ", this.teens, " adults: ", this.adults, " seniors: ", this.seniors)
-    // this.createLoop("minor", this.minors, this.sickMinors);
-    // this.createLoop("teen", this.teens, this.sickTeens);
-    // this.createLoop("adult", this.adults, this.sickAdults);
-    // this.createLoop("senior", this.seniors, this.sickSeniors);
-// }
-
-// Scenario.prototype.randomSelector = function (lowerLimit, upperLimit) {    
-//     let rand = (Math.random() * upperLimit) + lowerLimit
-//     let sign1 = [-1, 1][Math.floor(Math.random() * 2)];
-//     let answ = sign1 * rand
-//     return answ
-// }
 
 
 
@@ -164,31 +135,14 @@ Scenario.prototype.createLoop = function (ageGroup, n, s) {
             obj = Senior;
             break;
     }
-    // let type = "sick";
-    // let {radius, color, age} = obj
     let scenario = this;
     for (let i = 0; i < n-s; i++) {
-        // let name = `${i}-${age}`;
-        // let vel = [this.randomSelector(obj.vel[0], obj.vel[1]), this.randomSelector(obj.vel[0], obj.vel[1])]
         let pos = this.randomPosition();
         let type = "well"
         let person = new obj({ type, pos, scenario })
-        // debugger
         this.add(person)
-        // let person = new MovingPerson({
-        //     type,
-        //     radius,
-        //     pos,
-        //     vel,
-        //     color,
-        //     age,
-        //     ctx : this.ctx
-        // })
-        // this.censusObject[pos] = vel
-        // person.draw()
     }
     for (let i = 0; i < s; i++){
-        // let name = `${i}-${age}`;
         let pos = this.randomPosition();
         let type = "infected"
         let person = new obj({ type, pos, scenario })
@@ -209,8 +163,3 @@ Scenario.prototype.requestData = function () {
 
 module.exports = Scenario;
 
-// for (let i = 0; i < 100; i++){
-//     console.log(Math.floor(Math.random(2)* 100 * Math.random(10) * 50))    
-// }
-// console.log(Math.floor(Math.random(5) * 100) + Math.random(200))
-// console.log(Math.random(1260) * (Math.random(5) + 1))
