@@ -68,10 +68,10 @@ Scenario.prototype.addPersons = function addPersons() {
     // iterate through each of the age groups, first instantiating the healthy ones from 
     // NUM_MINORS - sickMinors as healthy, then the sickMinors, as infected
     // 
-    this.createLoop("minor", this.NUM_MINORS, this.sickMinors)
-    this.createLoop("teen", this.NUM_TEENS, this.sickTeens);
-    this.createLoop("adult", this.NUM_ADULTS, this.sickAdults);
-    this.createLoop("senior", this.NUM_SENIORS, this.sickSeniors);
+    this.createLoop("minor", Scenario.NUM_MINORS, this.sickMinors)
+    this.createLoop("teen", Scenario.NUM_TEENS, this.sickTeens);
+    this.createLoop("adult", Scenario.NUM_ADULTS, this.sickAdults);
+    this.createLoop("senior", Scenario.NUM_SENIORS, this.sickSeniors);
 }
 
 
@@ -84,7 +84,6 @@ Scenario.prototype.draw = function draw(ctx) {
     ctx.clearRect(0, 0, Scenario.DIM_X, Scenario.DIM_Y);
     ctx.fillStyle = Scenario.BG_COLOR;
     ctx.fillRect(0, 0, Scenario.DIM_X, Scenario.DIM_Y);
-
     this.allObjects().forEach(function (object) {
         object.draw(ctx);
     });
@@ -121,6 +120,7 @@ Scenario.prototype.wrap = function wrap(pos) {
 };
 
 Scenario.prototype.createLoop = function (ageGroup, n, s) {
+    console.log("params: ", ageGroup, n, s)
     switch (ageGroup) {
         case "minor":
             obj = Minor;
