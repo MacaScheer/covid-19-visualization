@@ -30,19 +30,20 @@ MovingPerson.prototype.isCollidedWith = function isCollidedWith(otherPerson) {
         return centerDist < (this.radius + 6 + otherPerson.radius);
 };
 
-MovingPerson.prototype.reflect = function reflect(pos, vel) {
-        if (pos[0] >= Scenario.DIM_X || pos[0] <= 0) {
+MovingPerson.prototype.reflect = function reflect(pos, vel, DIM_X, DIM_Y) {
+        // debugger
+        if (pos[0] >= DIM_X || pos[0] <= 0) {
                 vel[0] *= -1
         }
        
-        if (pos[1] >= Scenario.DIM_Y || pos[1] <= 0) {
+        if (pos[1] >= DIM_Y || pos[1] <= 0) {
                 vel[1] *= -1
         }
 }
 
 MovingPerson.prototype.isWrappable = true;
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
-MovingPerson.prototype.move = function move(timeDelta) {
+MovingPerson.prototype.move = function move(timeDelta, DIM_X, DIM_Y) {
         //timeDelta is number of milliseconds since late move
         // if computer is busy the time delta will be larger
         // in this case the MovingPerson should move farther in this frame
@@ -51,14 +52,15 @@ MovingPerson.prototype.move = function move(timeDelta) {
         offsetX = this.vel[0] * velocityScale,
         offsetY = this.vel[1] * velocityScale;
         this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
-        if (this.scenario.isOutOfBounds(this.pos)) {
-                // this.reflect(this.pos, this.vel);
-                if (this.isWrappable) {
-                        this.pos = this.scenario.wrap(this.pos)
-                } else {
-                        this.remove()
-                }
-        }
+        this.reflect(this.pos, this.vel, DIM_X, DIM_Y)
+        // if (this.scenario.isOutOfBounds(this.pos)) {
+        //         // this.reflect(this.pos, this.vel);
+        //         if (this.isWrappable) {
+        //                 this.pos = this.scenario.wrap(this.pos)
+        //         } else {
+        //                 this.remove()
+        //         }
+        // }
 };
 MovingPerson.prototype.remove = function remove() {
         this.scenario.remove(this);

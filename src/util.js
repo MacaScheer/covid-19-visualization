@@ -34,11 +34,11 @@ const Util = {
             return coord;
         }
     },
-    redirect(mass1, mass2, vel1, vel2) {
-        debugger
+    // redirect(mass1, mass2, vel1, vel2) {
+    //     debugger
 
-        return [newVel1, newVel2]
-    },
+    //     return [newVel1, newVel2]
+    // },
 
     angle(vel) {
         return Math.atan2(vel[0], vel[1])

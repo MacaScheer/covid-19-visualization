@@ -26,10 +26,10 @@ Adult.prototype.collideWith = function collideWith(otherPerson) {
         // do nothing => both are already infected...but what would actually happen?
     }
     else if (this.type === "infected" || otherPerson.type === "infected") {
-        // this.type = "infected";
-        // otherPerson.type = "infected";
-        // For Both: 
-        debugger
+    //     // this.type = "infected";
+    //     // otherPerson.type = "infected";
+    //     // For Both: 
+    //     debugger
         let newType = "infected";
         let newColor = DEFAULTS.SICKCOLOR;
         this.type = newType;
@@ -41,9 +41,9 @@ Adult.prototype.collideWith = function collideWith(otherPerson) {
         // this will change for the different age groups.
     }
 
-    let newVel = Util.redirect(this.radius, otherPerson.radius, this.vel, otherPerson.vel);
-    this.vel = newVel[0];
-    otherPerson.vel = newVel[1]
+    // let newVel = Util.redirect(this.radius, otherPerson.radius, this.vel, otherPerson.vel);
+    // this.vel = newVel[0];
+    // otherPerson.vel = newVel[1]
 }
 
 

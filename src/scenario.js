@@ -91,7 +91,7 @@ Scenario.prototype.draw = function draw(ctx) {
 
 Scenario.prototype.movePersons = function movePersons(delta) {
     this.allObjects().forEach(function (object) {
-        object.move(delta);
+        object.move(delta, Scenario.DIM_X, Scenario.DIM_Y);
     });
 };
 Scenario.prototype.checkCollisions = function checkCollisions() {

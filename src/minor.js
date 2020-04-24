@@ -25,7 +25,7 @@ Minor.prototype.collideWith = function collideWith(otherPerson) {
         // this.type = "infected";
         // otherPerson.type = "infected";
         // For Both: 
-        debugger
+        // debugger
         let newType = "infected";
         let newColor = DEFAULTS.SICKCOLOR;
         this.type = newType;
@@ -37,9 +37,9 @@ Minor.prototype.collideWith = function collideWith(otherPerson) {
         // this will change for the different age groups.
     }
 
-    let newVel = Util.redirect(this.vel, otherPerson.vel);
-    this.vel = newVel[0];
-    otherPerson.vel = newVel[1]
+    // let newVel = Util.redirect(this.vel, otherPerson.vel);
+    // this.vel = newVel[0];
+    // otherPerson.vel = newVel[1]
 }
 
 
