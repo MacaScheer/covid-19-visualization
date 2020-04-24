@@ -40,7 +40,7 @@ Adult.prototype.collideWith = function collideWith(otherPerson) {
         // this will change for the different age groups.
     }
 
-    let newVel = Util.redirect(this.vel, otherPerson.vel);
+    let newVel = Util.redirect(this.radius, otherPerson.radius, this.vel, otherPerson.vel);
     this.vel = newVel[0];
     otherPerson.vel = newVel[1]
 }
