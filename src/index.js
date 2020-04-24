@@ -9,8 +9,10 @@ const ScenarioView = require("./scenario_view");
 document.addEventListener("DOMContentLoaded", function () {
     const canvas = document.getElementById("canvas-space");
     const ctx = canvas.getContext("2d");
+    // const menu = new Menu()
+    // let [demObj, demSick] = await menu.requestParameters()
     let demoObj = {
-        population: 100,
+        population: 200,
         percentMinors: .15,
         percentTeens: .20,
         percentAdults: .45,
@@ -25,6 +27,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const scen = new Scenario(ctx, demoObj, demSick);
     new ScenarioView(scen, ctx).start()
-    // const menu = new Menu()
-    // menu.requestParameters()
 })

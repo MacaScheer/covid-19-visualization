@@ -24,6 +24,7 @@ function Scenario(ctx, demoObj, demSick) {
     this.adults = [];
     this.seniors = [];
     this.infected = [];
+    debugger
     this.addPersons()
     // this.city = obj.city;
     // this.censusObject = {};
