@@ -3,15 +3,16 @@ const MovingPerson = require("./moving_person")
 
 
 const DEFAULTS = {
-    RADIUS: 4.8, COLOR: "#60b4f8", SPEED: 1.8, AGE: "senior", SICKCOLOR: "#32a850"
+    RADIUS: 4.8, COLOR: "#60b4f8", SPEED: 1.8, AGE: "senior", SICKCOLOR: "#32a850", MASS: 8
 }
 
 function Senior(options) {
-    this.options = options || {};
-    this.options.color = DEFAULTS.COLOR;
-    this.options.pos = options.pos || options.game.randomPosition();
-    this.options.radius = DEFAULTS.RADIUS;
-    this.options.vel = options.vel || Util.randomVec(DEFAULTS.SPEED)
+    options = options || {};
+    options.color = DEFAULTS.COLOR;
+    options.pos = options.pos || options.game.randomPosition();
+    options.radius = DEFAULTS.RADIUS;
+    options.mass = DEFAULTS.MASS
+    options.vel = options.vel || Util.randomVec(DEFAULTS.SPEED)
 
     MovingPerson.call(this, options)
     // new MovingPerson(this, options)

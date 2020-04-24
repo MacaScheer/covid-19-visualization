@@ -3,7 +3,7 @@ const MovingPerson = require("./moving_person")
 
 
 const DEFAULTS = {
-    RADIUS: 6, COLOR: "#6666e8", SPEED: 6, AGE: "adult", SICKCOLOR: "#32a850"//, SICK: false
+    RADIUS: 6, COLOR: "#6666e8", SPEED: 6, AGE: "adult", SICKCOLOR: "#32a850", MASS: 10//, SICK: false
 }
 
 function Adult(options) {
@@ -12,6 +12,7 @@ function Adult(options) {
     options.radius = DEFAULTS.RADIUS;
     options.vel = options.vel || Util.randomVec(DEFAULTS.SPEED)
     options.type = options.type
+    options.mass = DEFAULTS.MASS
     options.color = options.type === "well" ? DEFAULTS.COLOR : DEFAULTS.SICKCOLOR;
     MovingPerson.call(this, options)
     // new MovingPerson(this, option

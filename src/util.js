@@ -60,10 +60,11 @@ module.exports = Util;
 //                 let theta1 = ob1.angle();
 //                 let theta2 = ob2.angle();
 //                 let phi = Math.atan2(ob2.y - ob1.y, ob2.x - ob1.x);
+//                  letting mass = radius for now
 //                 let m1 = ob1.mass;
 //                 let m2 = ob2.mass;
-//                 let v1 = ob1.speed();
-//                 let v2 = ob2.speed();
+//                 let v1 = ob1.dist();
+//                 let v2 = ob2.dist();
 
 //                 let dx1F = (v1 * Math.cos(theta1 - phi) * (m1 - m2) + 2 * m2 * v2 * Math.cos(theta2 - phi)) / (m1 + m2) * Math.cos(phi) + v1 * Math.sin(theta1 - phi) * Math.cos(phi + Math.PI / 2);
 //                 let dy1F = (v1 * Math.cos(theta1 - phi) * (m1 - m2) + 2 * m2 * v2 * Math.cos(theta2 - phi)) / (m1 + m2) * Math.sin(phi) + v1 * Math.sin(theta1 - phi) * Math.sin(phi + Math.PI / 2);
