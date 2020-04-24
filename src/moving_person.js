@@ -29,6 +29,17 @@ MovingPerson.prototype.isCollidedWith = function isCollidedWith(otherPerson) {
         const centerDist = Util.dist(this.pos, otherPerson.pos);
         return centerDist < (this.radius + 6 + otherPerson.radius);
 };
+
+MovingPerson.prototype.reflect = function reflect(pos, vel) {
+        if (pos[0] >= Scenario.DIM_X || pos[0] <= 0) {
+                vel[0] *= -1
+        }
+       
+        if (pos[1] >= Scenario.DIM_Y || pos[1] <= 0) {
+                vel[1] *= -1
+        }
+}
+
 MovingPerson.prototype.isWrappable = true;
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
 MovingPerson.prototype.move = function move(timeDelta) {
@@ -41,6 +52,7 @@ MovingPerson.prototype.move = function move(timeDelta) {
         offsetY = this.vel[1] * velocityScale;
         this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
         if (this.scenario.isOutOfBounds(this.pos)) {
+                // this.reflect(this.pos, this.vel);
                 if (this.isWrappable) {
                         this.pos = this.scenario.wrap(this.pos)
                 } else {

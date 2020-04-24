@@ -151,6 +151,7 @@ Scenario.prototype.createLoop = function (ageGroup, n, s) {
     }
 }
 
+
 Scenario.prototype.isOutOfBounds = function isOutOfBounds(pos) {
     return (pos[0] < 0) || (pos[1] < 0) ||
         (pos[0] > Scenario.DIM_X) || (pos[1] > Scenario.DIM_Y);
