@@ -5,6 +5,17 @@
         <title>Covid Spread</title>
         <!-- <script type="application/javascript" src="../vendor/keymaster.js"></script> -->
         <style>
+            #title{
+                text-align: center;
+            }
+            body{
+                display: flex;
+                justify-content: center;
+                flex-direction:column;
+
+                align-self: center;
+                /* justify-self: center; */
+            }
             #population-key {
                 display:flex;
                 flex-direction:row;
@@ -37,6 +48,7 @@
         <script type="application/javascript" src="./main.js"></script>
     </head>
     <body>
+        <h2 id="title">Visualization of Covid-19 Spread</h2>
         <canvas id="canvas-space" width="1000" height="600"></canvas>
         <div id="population-key">
             <ul id="key-list">
