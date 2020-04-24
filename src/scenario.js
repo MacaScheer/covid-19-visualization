@@ -14,10 +14,10 @@ function Scenario(ctx, demoObj, demSick) {
     this.sickTeens = demSick.teens;
     this.sickAdults = demSick.adults;
     this.sickSeniors = demSick.seniors;
-    this.minors = demoObj.population * demoObj.percentMinors;
-    this.teens = demoObj.population * demoObj.percentTeens;
-    this.adults = demoObj.population * demoObj.percentAdults;
-    this.seniors = demoObj.population * demoObj.percentSeniors;
+    this.minors = Math.floor(demoObj.population * demoObj.percentMinors);
+    this.teens = Math.floor(demoObj.population * demoObj.percentTeens);
+    this.adults = Math.floor(demoObj.population * demoObj.percentAdults);
+    this.seniors = Math.floor(demoObj.population * demoObj.percentSeniors);
     this.popDensity = Math.floor(this.area / this.population);
     this.minors = [];
     this.teens = [];
@@ -69,6 +69,7 @@ Scenario.prototype.addPersons = function addPersons() {
     // iterate through each of the age groups, first instantiating the healthy ones from 
     // NUM_MINORS - sickMinors as healthy, then the sickMinors, as infected
     // 
+    debugger
     this.createLoop("minor", Scenario.NUM_MINORS, this.sickMinors)
     this.createLoop("teen", Scenario.NUM_TEENS, this.sickTeens);
     this.createLoop("adult", Scenario.NUM_ADULTS, this.sickAdults);
