@@ -21,6 +21,7 @@ Util.inherits(Teen, MovingPerson);
 Teen.prototype.collideWith = function collideWith(otherPerson) {
     // if this.infected, spread to otherPerson
     // if otherPerson.infect and !this.infected spread to this.Teen
+    debugger
     if (otherPerson instanceof MovingPerson) {
 
 

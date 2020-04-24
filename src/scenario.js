@@ -97,10 +97,9 @@ Scenario.prototype.movePersons = function movePersons(delta) {
 Scenario.prototype.checkCollisions = function checkCollisions() {
     const allObjects = this.allObjects();
     for (let i = 0; i < allObjects.length; i++) {
-        for (let j = 0; j < allObjects.length; j++) {
+        for (let j = i + 1; j < allObjects.length; j++) {
             const obj1 = allObjects[i];
             const obj2 = allObjects[j];
-
             if (obj1.isCollidedWith(obj2)) {
                 const collision = obj1.collideWith(obj2);
                 if (collision) return;

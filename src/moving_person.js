@@ -27,7 +27,7 @@ MovingPerson.prototype.collideWith = function collideWith(otherPerson) {
 };
 MovingPerson.prototype.isCollidedWith = function isCollidedWith(otherPerson) {
         const centerDist = Util.dist(this.pos, otherPerson.pos);
-        return centerDist < (this.radius + otherPerson.radius);
+        return centerDist < (this.radius + 6 + otherPerson.radius);
 };
 MovingPerson.prototype.isWrappable = true;
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;

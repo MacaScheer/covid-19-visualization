@@ -21,11 +21,18 @@ Util.inherits(Adult, MovingPerson);
 Adult.prototype.collideWith = function collideWith(otherPerson) {
     // if this.infected, spread to otherPerson
     // if otherPerson.infect and !this.infected spread to this.Adult
-    if (otherPerson instanceof MovingPerson) {
-
-
-        return true;
+    debugger
+    if (this.type === "infected" || otherPerson.type === "infected") {
+        this.type = "infected";
+        otherPerson.type = "infected";
+        // will we need to re-instatiate both, removing them first, so they will be colored correctly?
+        // also, should there be an incubation period? Where color changes (or not) and then only changes to the infected "green" after the incubation?
     }
+    // if (otherPerson instanceof MovingPerson) {
+
+
+    //     return true;
+    // }
 }
 
 
