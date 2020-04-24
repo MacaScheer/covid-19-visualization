@@ -3,7 +3,7 @@ const MovingPerson = require("./moving_person")
 
 
 const DEFAULTS = {
-    RADIUS: 6, COLOR: "#6666e8", SPEED: 6, AGE: "adult", SICKCOLOR: "#32a850", MASS: 10//, SICK: false
+    RADIUS: 6, COLOR: "#6666e8", SPEED: 1.5, AGE: "adult", SICKCOLOR: "#32a850", MASS: 10//, SICK: false
 }
 
 function Adult(options) {

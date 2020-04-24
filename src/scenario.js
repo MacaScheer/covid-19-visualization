@@ -14,17 +14,16 @@ function Scenario(ctx, demoObj, demSick) {
     this.sickTeens = demSick.teens;
     this.sickAdults = demSick.adults;
     this.sickSeniors = demSick.seniors;
-    this.minors = Math.floor(demoObj.population * demoObj.percentMinors);
-    this.teens = Math.floor(demoObj.population * demoObj.percentTeens);
-    this.adults = Math.floor(demoObj.population * demoObj.percentAdults);
-    this.seniors = Math.floor(demoObj.population * demoObj.percentSeniors);
+    this.numMinors = Math.floor(demoObj.population * demoObj.percentMinors);
+    this.numTeens = Math.floor(demoObj.population * demoObj.percentTeens);
+    this.numAdults = Math.floor(demoObj.population * demoObj.percentAdults);
+    this.numSeniors = Math.floor(demoObj.population * demoObj.percentSeniors);
     this.popDensity = Math.floor(this.area / this.population);
     this.minors = [];
     this.teens = [];
     this.adults = [];
     this.seniors = [];
     this.infected = [];
-    debugger
     this.addPersons()
     // this.city = obj.city;
     // this.censusObject = {};
@@ -40,11 +39,11 @@ Scenario.DIM_X = 1000;
 Scenario.DIM_Y = 600;
 Scenario.FPS = 32;
 Scenario.NUM_PPL = this.population ||20;
-Scenario.NUM_MINORS = this.minors || 3;
-Scenario.NUM_TEENS = this.teens || 4;
-Scenario.NUM_ADULTS = this.adults || 8;
-Scenario.NUM_SENIORS = 5;
-Scenario.NUM_SICK = (this.sickMinors + this.sickTeens + this.sickAdults + this.sickSeniors) || 3;
+// Scenario.NUM_MINORS = this.numMinors || 3;
+// Scenario.NUM_TEENS = this.numTeens || 4;
+// Scenario.NUM_ADULTS = this.numAdults || 8;
+// Scenario.NUM_SENIORS = 5;
+// Scenario.NUM_SICK = (this.sickMinors + this.sickTeens + this.sickAdults + this.sickSeniors) || 3;
 Scenario.prototype.randomPosition = function randomPosition() {
     return [
         Scenario.DIM_X * Math.random(),
@@ -69,11 +68,10 @@ Scenario.prototype.addPersons = function addPersons() {
     // iterate through each of the age groups, first instantiating the healthy ones from 
     // NUM_MINORS - sickMinors as healthy, then the sickMinors, as infected
     // 
-    debugger
-    this.createLoop("minor", Scenario.NUM_MINORS, this.sickMinors)
-    this.createLoop("teen", Scenario.NUM_TEENS, this.sickTeens);
-    this.createLoop("adult", Scenario.NUM_ADULTS, this.sickAdults);
-    this.createLoop("senior", Scenario.NUM_SENIORS, this.sickSeniors);
+    this.createLoop("minor", this.numMinors, this.sickMinors)
+    this.createLoop("teen", this.numTeens, this.sickTeens);
+    this.createLoop("adult", this.numAdults, this.sickAdults);
+    this.createLoop("senior", this.numSeniors, this.sickSeniors);
 }
 
 

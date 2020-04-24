@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
         adults: 2,
         seniors: 1
     }
-
     const scen = new Scenario(ctx, demoObj, demSick);
     new ScenarioView(scen, ctx).start()
 })
