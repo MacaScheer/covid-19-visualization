@@ -10,6 +10,7 @@ function MovingPerson(obj) {
         this.age = obj.age;
         this.ctx = obj.ctx;
         this.scenario = obj.scenario;
+        this.stage = 0;
         // type will determine color and velocity, will represent age
 }
 MovingPerson.prototype.draw = function (ctx) {
@@ -53,6 +54,15 @@ MovingPerson.prototype.move = function move(timeDelta, DIM_X, DIM_Y) {
         offsetY = this.vel[1] * velocityScale;
         this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
         this.reflect(this.pos, this.vel, DIM_X, DIM_Y)
+
+        if (this.type === "infected") {
+                // advance the stage of disease until either recovered or dead
+                if (this.stage < 10) {
+                        this.stage++
+                } else {
+                        this.scenario.progressDisease(this);
+                }
+        }
         // if (this.scenario.isOutOfBounds(this.pos)) {
         //         // this.reflect(this.pos, this.vel);
         //         if (this.isWrappable) {

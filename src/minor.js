@@ -3,7 +3,7 @@ const MovingPerson = require("./moving_person")
 
 
 const DEFAULTS = {
-    RADIUS: 3.85, COLOR: "#f59338", SPEED: .6, AGE: "minor", SICKCOLOR: "#32a850", MASS: 5
+    RADIUS: 3.85, COLOR: "#f59338", SPEED: .6, AGE: "minor", SICKCOLOR: "#32a850", MASS: 5, DICEASEDCOLOR: "#808080"
 }
 
 function Minor(options) {
@@ -41,6 +41,8 @@ Minor.prototype.collideWith = function collideWith(otherPerson) {
     // this.vel = newVel[0];
     // otherPerson.vel = newVel[1]
 }
-
+Minor.prototype.progressDisease = function progressDisease() {
+    this.color = DEFAULTS.DICEASEDCOLOR;
+}
 
 module.exports = Minor;

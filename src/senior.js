@@ -3,7 +3,7 @@ const MovingPerson = require("./moving_person")
 
 
 const DEFAULTS = {
-    RADIUS: 4.8, COLOR: "#60b4f8", SPEED: .8, AGE: "senior", SICKCOLOR: "#32a850", MASS: 8
+    RADIUS: 4.8, COLOR: "#60b4f8", SPEED: .8, AGE: "senior", SICKCOLOR: "#32a850", MASS: 8, DICEASEDCOLOR: "#808080"
 }
 
 function Senior(options) {
@@ -42,6 +42,9 @@ Senior.prototype.collideWith = function collideWith(otherPerson) {
     // let newVel = Util.redirect(this.vel, otherPerson.vel);
     // this.vel = newVel[0];
     // otherPerson.vel = newVel[1]
+}
+Senior.prototype.progressDisease = function progressDisease() {
+    this.color = DEFAULTS.DICEASEDCOLOR;
 }
 
 

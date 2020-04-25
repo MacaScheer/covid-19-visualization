@@ -19,6 +19,10 @@ function Scenario(ctx, demoObj, demSick) {
     this.numAdults = Math.floor(demoObj.population * demoObj.percentAdults);
     this.numSeniors = Math.floor(demoObj.population * demoObj.percentSeniors);
     this.popDensity = Math.floor(this.area / this.population);
+    this.infectedMinors = [];
+    this.infectedTeens = [];
+    this.infectedAdults = [];
+    this.infectedSeniors = [];
     this.minors = [];
     this.teens = [];
     this.adults = [];
@@ -33,6 +37,11 @@ function Scenario(ctx, demoObj, demSick) {
     // this.size
     
 }
+
+Scenario.MORT_RATE_SENIOR = 47.7;
+Scenario.MORT_RATE_ADULT = 52.2;
+Scenario.MORT_RATE_TEEN = .02;
+Scenario.MORT_RATE_MINOR = .02;
 
 Scenario.BG_COLOR = "#ededed";
 Scenario.DIM_X = 1000;
@@ -53,12 +62,16 @@ Scenario.prototype.randomPosition = function randomPosition() {
 Scenario.prototype.add = function add(object) {
     if (object instanceof Minor) {
         this.minors.push(object)
+        if (object.type === "infected") this.infectedMinors.push(object)
     } else if (object instanceof Teen) {
         this.teens.push(object)
+        if (object.type === "infected") this.infectedTeens.push(object)
     } else if (object instanceof Adult) {
         this.adults.push(object)
+        if (object.type === "infected") this.infectedAdults.push(object)
     } else if (object instanceof Senior) {
         this.seniors.push(object)
+        if (object.type === "infected") this.infectedSeniors.push(object)
     } else {
         throw new Error("unknown type of object")
     }
@@ -75,7 +88,6 @@ Scenario.prototype.addPersons = function addPersons() {
 }
 
 
-
 Scenario.prototype.allObjects = function allObjects() {
     return [].concat(this.minors, this.teens, this.adults, this.seniors);
 };
@@ -88,9 +100,34 @@ Scenario.prototype.draw = function draw(ctx) {
         object.draw(ctx);
     });
 };
+Scenario.prototype.logSick = function logSick(object) {
+    if (object instanceof Minor) {
+        this.infectedMinors.push(object)
+    } else if (object instanceof Teen) {
+        this.infectedTeens.push(object)
+    } else if (object instanceof Adult) {
+        this.infectedAdults.push(object)
+    } else if (object instanceof Senior) {
+        this.infectedSeniors.push(object)
+    }
+}
+Scenario.prototype.notLogged = function notLogged(object) {
+    if (object instanceof Minor) {
+        return this.infectedMinors.includes(object)
+    } else if (object instanceof Teen) {
+        return this.infectedTeens.includes(object)
+    } else if (object instanceof Adult) {
+        return this.infectedAdults.includes(object)
+    } else if (object instanceof Senior) {
+        return this.infectedSeniors.includes(object)
+    }
+}
 
 Scenario.prototype.movePersons = function movePersons(delta) {
     this.allObjects().forEach(function (object) {
+        if (object.type === "infected" && this.notLogged(object)) {
+            this.logSick(object)
+        }
         object.move(delta, Scenario.DIM_X, Scenario.DIM_Y);
     });
 };

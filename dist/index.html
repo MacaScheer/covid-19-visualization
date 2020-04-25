@@ -21,11 +21,12 @@
             }
             #population-key {
                 display:flex;
-                flex-direction:row;
+                flex-direction:column;
             }
             #key-list{
-                flex-direction:column;
-                width:100px;
+                /* display: flex; */
+                /* flex-direction:row; */
+                width:90px;
                 height: 30px;
                 display:block;
                 list-style:none;
@@ -33,18 +34,38 @@
             }
             #minor{
                 background-color: #f59338;
+                padding:3px;
+
             }
             #teen{
                 background-color: #b21c1c;
+                padding:3px;
+
             }
             #adult{
                 background-color: #6666e8;
+                padding:3px;
+
             }
             #senior{
                 background-color: #60b4f8;
+                padding:3px;
+
             }
             #infected{
                 background-color: #32a850;
+                padding:3px;
+
+            }
+            #diceased{
+                background-color: #808080;
+                padding:3px;
+
+            }
+            #recovered{
+                background-color: rgb(255, 97, 97);
+                padding:3px;
+
             }
 
         </style>
@@ -60,6 +81,9 @@
                 <li id="adult">Adult</li>
                 <li id="senior">Senior</li>
                 <li id="infected">Infected</li>
+                <li id="recovered">Recovered</li>
+                <li id="diceased">Diceased</li>
+
             </ul>
             <div className="drop-down">
                 <!-- <input -->
