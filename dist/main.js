@@ -104,7 +104,29 @@ eval("const Util = __webpack_require__(/*! ./util */ \"./src/util.js\");\nconst 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("console.log(\"webpack is working!\")\n\nconst Scenario = __webpack_require__(/*! ./scenario.js */ \"./src/scenario.js\");\nconst ScenarioView = __webpack_require__(/*! ./scenario_view */ \"./src/scenario_view.js\");\n// const Menu = require(\"./menu.js\")\n// const MovingPerson = require(\"./moving_person.js\");\n// window.MovingPerson = MovingPerson;\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n    const canvas = document.getElementById(\"canvas-space\");\n    const ctx = canvas.getContext(\"2d\");\n    const graphCanvas = document.getElementById(\"demo-graph\")\n    const graphCtx = graphCanvas.getContext(\"2d\")\n    // const menu = new Menu()\n    // let [demObj, demSick] = await menu.requestParameters()\n    let demoObj = {\n        population: 200,\n        percentMinors: .15,\n        percentTeens: .20,\n        percentAdults: .45,\n        percentSeniors: .20\n    }\n    let demSick = {\n        minors: 0,\n        teens: 0,\n        adults: 2,\n        seniors: 1\n    }\n    const scen = new Scenario(ctx, demoObj, demSick);\n    new ScenarioView(scen, ctx).start()\n})\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("console.log(\"webpack is working!\")\n\nconst Scenario = __webpack_require__(/*! ./scenario.js */ \"./src/scenario.js\");\nconst ScenarioView = __webpack_require__(/*! ./scenario_view */ \"./src/scenario_view.js\");\nconst Menu = __webpack_require__(/*! ./menu.js */ \"./src/menu.js\")\n\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n    const canvas = document.getElementById(\"canvas-space\");\n    const ctx = canvas.getContext(\"2d\");\n    const graphCanvas = document.getElementById(\"demo-graph\")\n    const graphCtx = graphCanvas.getContext(\"2d\")\n    const menu = new Menu()\n    // let [demObj, demSick] = await menu.requestParameters()\n    let demoObj = {\n        population: 70,\n        percentMinors: .15,\n        percentTeens: .20,\n        percentAdults: .45,\n        percentSeniors: .20\n    }\n    let demSick = {\n        minors: 0,\n        teens: 0,\n        adults: 0,\n        seniors: 1\n    }\n    const scen = new Scenario(ctx, demoObj, demSick);\n    new ScenarioView(scen, ctx).start()\n})\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/locale.js":
+/*!***********************!*\
+  !*** ./src/locale.js ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function Locale(obj) {\n    \n}\n\nmodule.exports = Locale;\n\n//# sourceURL=webpack:///./src/locale.js?");
+
+/***/ }),
+
+/***/ "./src/menu.js":
+/*!*********************!*\
+  !*** ./src/menu.js ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const Scenario = __webpack_require__(/*! ./scenario.js */ \"./src/scenario.js\")\nconst Locale = __webpack_require__(/*! ./locale.js */ \"./src/locale.js\")\nclass Menu{\n    constructor() {\n        \n    }\n}\n\nMenu.prototype.requestParameters = function () {\n    \n}\n\nMenu.prototype.generateScenario = function (obj) {\n    \n    const scenario = new Scenario();\n}\n\nmodule.exports = Menu;\n\n//# sourceURL=webpack:///./src/menu.js?");
 
 /***/ }),
 
