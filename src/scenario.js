@@ -124,12 +124,18 @@ Scenario.prototype.notLogged = function notLogged(object) {
 }
 
 Scenario.prototype.movePersons = function movePersons(delta) {
-    this.allObjects().forEach(function (object) {
-        if (object.type === "infected" && this.notLogged(object)) {
-            this.logSick(object)
-        }
+    let allObjs = this.allObjects();
+    for (let i = 0; i < allObjs.length; i++){
+        let obj = allObjs[i]
+        if (object.type=== "infected" && this.notLogged(obj))this.logSick(obj)
         object.move(delta, Scenario.DIM_X, Scenario.DIM_Y);
-    });
+    }
+    // this.allObjects().forEach(function (object) {
+    //     if (object.type === "infected" && notLogged(object)) {
+    //         logSick(object)
+    //     }
+    //     object.move(delta, Scenario.DIM_X, Scenario.DIM_Y);
+    // });
 };
 Scenario.prototype.checkCollisions = function checkCollisions() {
     const allObjects = this.allObjects();

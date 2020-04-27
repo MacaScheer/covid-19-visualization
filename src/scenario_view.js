@@ -20,7 +20,7 @@ ScenarioView.prototype.start = function start() {
 };
 ScenarioView.prototype.animate = function animate(time) {
     // console.log("time: ", time)
-    debugger
+    // debugger
     const timeDelta = time - this.lastTime;
     this.scenario.step(timeDelta);
     this.scenario.draw(this.ctx);
