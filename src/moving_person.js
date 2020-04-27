@@ -57,11 +57,12 @@ MovingPerson.prototype.move = function move(timeDelta, DIM_X, DIM_Y) {
 
         if (this.type === "infected") {
                 // advance the stage of disease until either recovered or dead
-                if (this.stage < 10) {
-                        this.stage++
-                } else {
+                console.log("stage: ", this.stage)
+                // if (this.stage < 10) {
+                //         this.stage++
+                // } else {
                         this.progressDisease();
-                }
+                // }
         }
         // if (this.scenario.isOutOfBounds(this.pos)) {
         //         // this.reflect(this.pos, this.vel);
