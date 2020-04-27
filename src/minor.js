@@ -42,7 +42,9 @@ Minor.prototype.collideWith = function collideWith(otherPerson) {
     // otherPerson.vel = newVel[1]
 }
 Minor.prototype.progressDisease = function progressDisease() {
-    setTimeout(this.die(), 200)
+    setTimeout(function () {
+        this.die()
+    }, 1200)
 }
 Minor.prototype.die = function die() {
     this.color = DEFAULTS.DICEASEDCOLOR;

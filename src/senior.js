@@ -44,7 +44,9 @@ Senior.prototype.collideWith = function collideWith(otherPerson) {
     // otherPerson.vel = newVel[1]
 }
 Senior.prototype.progressDisease = function progressDisease() {
- setTimeout(this.die(), 200)
+    setTimeout(function () {
+        this.die()
+    }, 1200)
 }
 Senior.prototype.die = function die() {
     this.color = DEFAULTS.DICEASEDCOLOR;
