@@ -60,7 +60,7 @@ MovingPerson.prototype.move = function move(timeDelta, DIM_X, DIM_Y) {
                 if (this.stage < 10) {
                         this.stage++
                 } else {
-                        this.scenario.progressDisease(this);
+                        this.progressDisease();
                 }
         }
         // if (this.scenario.isOutOfBounds(this.pos)) {
