@@ -46,8 +46,10 @@ Adult.prototype.collideWith = function collideWith(otherPerson) {
     // otherPerson.vel = newVel[1]
 }
 Adult.prototype.progressDisease = function progressDisease() {
+    let that = this;
+   
     setTimeout(function () {
-        this.die()
+        that.die()
     }, 1600)
 }
 Adult.prototype.die = function die() {

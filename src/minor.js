@@ -42,8 +42,9 @@ Minor.prototype.collideWith = function collideWith(otherPerson) {
     // otherPerson.vel = newVel[1]
 }
 Minor.prototype.progressDisease = function progressDisease() {
+    let that = this;
     setTimeout(function () {
-        this.die()
+        that.die()
     }, 1200)
 }
 Minor.prototype.die = function die() {
