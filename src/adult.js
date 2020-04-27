@@ -46,11 +46,11 @@ Adult.prototype.collideWith = function collideWith(otherPerson) {
     // otherPerson.vel = newVel[1]
 }
 Adult.prototype.progressDisease = function progressDisease() {
-      if (this.stage < 10) {
-            this.stage++
-        } else {
-            this.color = DEFAULTS.DICEASEDCOLOR;
-        }
+ setTimeout(this.die(), 600)
+}
+Adult.prototype.die = function die() {
+    this.color = DEFAULTS.DICEASEDCOLOR;
+    this.vel = [0,0]  
 }
 
 

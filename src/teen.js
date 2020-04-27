@@ -44,12 +44,13 @@ Teen.prototype.collideWith = function collideWith(otherPerson) {
     // otherPerson.vel = newVel[1]
 }
 Teen.prototype.progressDisease = function progressDisease() {
-     if (this.stage < 10) {
-            this.stage++
-        } else {
-            this.color = DEFAULTS.DICEASEDCOLOR;
-        }
+     setTimeout(this.die(), 400)
 }
+Teen.prototype.die = function die() {
+    this.color = DEFAULTS.DICEASEDCOLOR;
+    this.vel = [0,0]    
+}
+
 
 
 module.exports = Teen;

@@ -42,11 +42,13 @@ Minor.prototype.collideWith = function collideWith(otherPerson) {
     // otherPerson.vel = newVel[1]
 }
 Minor.prototype.progressDisease = function progressDisease() {
-     if (this.stage < 10) {
-            this.stage++
-        } else {
-            this.color = DEFAULTS.DICEASEDCOLOR;
-        }
+    setTimeout(this.die(), 200)
+}
+Minor.prototype.die = function die() {
+    this.color = DEFAULTS.DICEASEDCOLOR;
+    this.vel = [0,0]
+    
+    
 }
 
 module.exports = Minor;
