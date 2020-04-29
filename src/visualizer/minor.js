@@ -18,23 +18,13 @@ function Minor(options) {
 Util.inherits(Minor, MovingPerson);
 
 Minor.prototype.collideWith = function collideWith(otherPerson) {
-    if (this.type === "infect" && otherPerson.type === "infected") {
-        // do nothing => both are already infected...but what would actually happen?
-    }
-    else if (this.type === "infected" || otherPerson.type === "infected") {
-        // this.type = "infected";
-        // otherPerson.type = "infected";
-        // For Both: 
-        // debugger
-        let newType = "infected";
-        let newColor = DEFAULTS.SICKCOLOR;
+    let newVel = Util.randomVec(.3)
+    let newType = "infected";
+    let newColor = DEFAULTS.SICKCOLOR;
+    if (this.type === "infected" || otherPerson.type === "infected") {
+        this.Vel = newVel
         this.type = newType;
         this.color = newColor;
-        otherPerson.type = newType;
-        otherPerson.color = newColor;
-        // will we need to re-instatiate both? removing them first, so they will be colored correctly?
-        // also, should there be an incubation period? Where color changes (or not) and then only changes to the infected "green" after the incubation?
-        // this will change for the different age groups.
     }
 
     // let newVel = Util.redirect(this.vel, otherPerson.vel);
