@@ -12,20 +12,27 @@ const ScenarioView = require("./scenario_view");
 class Visualizer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { demoObj: {
-                                    population: 170,
-                                    percentMinors: 0.15,
-                                    percentTeens: 0.2,
-                                    percentAdults: 0.45,
-                                    percentSeniors: 0.2
-                        },
-                        demSick : {
-                                    minors: 0,
-                                    teens: 0,
-                                    adults: 0,
-                                    seniors: 1
-                                    }
-                    }
+        debugger
+        this.state = {
+            demoObj: {
+                population: 170,
+                percentMinors: 0.15,
+                percentTeens: 0.2,
+                percentAdults: 0.45,
+                percentSeniors: 0.2
+            },
+            demSick: {
+                minors: 0,
+                teens: 0,
+                adults: 0,
+                seniors: 1
+            },
+            numPositive: this.props.data.numPositive,
+            negative: this.props.data.negative,
+            numDeaths: this.props.numDeaths,
+            totalTested: this.props.data.totalTested
+            
+        };
     }
     componentDidMount() {
         const canvas = document.getElementById("canvas-space");

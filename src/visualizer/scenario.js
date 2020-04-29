@@ -177,6 +177,8 @@ Scenario.prototype.createLoop = function (ageGroup, n, s) {
         case "senior":
             obj = Senior;
             break;
+        default:
+            break;
     }
     let scenario = this;
     for (let i = 0; i < n-s; i++) {
