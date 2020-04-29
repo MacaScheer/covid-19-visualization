@@ -49,10 +49,16 @@ Adult.prototype.progressDisease = function progressDisease() {
     let that = this;
    
     setTimeout(function () {
-        that.die()
+          // if (Util.determineFate(that)) {
+        //     that.recover()
+        // } else {
+            that.die()
+        // };
+        // that.die()   
     }, 6000)
 }
 Adult.prototype.die = function die() {
+        this.type = "diceased"
     this.color = DEFAULTS.DICEASEDCOLOR;
     this.vel = [0, 0];
     // this.type = "diceased";

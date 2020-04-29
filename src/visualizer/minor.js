@@ -53,6 +53,7 @@ Minor.prototype.progressDisease = function progressDisease() {
     }, 2000)
 }
 Minor.prototype.die = function die() {
+        this.type = "diceased"
     this.color = DEFAULTS.DICEASEDCOLOR;
     this.vel = [0, 0]
     // this.type = "diceased"

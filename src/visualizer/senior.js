@@ -46,10 +46,15 @@ Senior.prototype.collideWith = function collideWith(otherPerson) {
 Senior.prototype.progressDisease = function progressDisease() {
     let that = this;
     setTimeout(function () {
-        that.die()
+        // if (Util.determineFate(that)) {
+        //     that.recover()
+        // } else {
+            that.die()
+        // };
     }, 2000)
 }
 Senior.prototype.die = function die() {
+    this.type = "diceased"
     this.color = DEFAULTS.DICEASEDCOLOR;
     this.vel = [0, 0];
     // this.type = "diceased";

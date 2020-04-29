@@ -58,6 +58,7 @@ Teen.prototype.recover = function recover() {
 }
 
 Teen.prototype.die = function die() {
+    this.type = "diceased"
     this.color = DEFAULTS.DICEASEDCOLOR;
     this.vel = [0, 0];
     // this.type = "diceased";
