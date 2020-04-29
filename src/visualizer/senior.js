@@ -60,7 +60,9 @@ Senior.prototype.die = function die() {
     // this.type = "diceased";
 }
 Senior.prototype.recover = function recover() {
-    this.color = DEFAULTS.COLOR
+         setTimeout(function () {
+        this.color = DEFAULTS.RECOVERED   
+    }, 12000)
 }
 
 

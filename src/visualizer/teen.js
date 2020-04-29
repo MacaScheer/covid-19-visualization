@@ -46,15 +46,17 @@ Teen.prototype.collideWith = function collideWith(otherPerson) {
 Teen.prototype.progressDisease = function progressDisease() {
     let that = this;
     setTimeout(function () {
-        // if (Util.determineFate(that)) {
-        //     that.recover()
-        // } else {
+        if (Util.determineFate(that)) {
+            that.recover()
+        } else {
             that.die()
-        // };
+        };
     }, 4000)
 }
 Teen.prototype.recover = function recover() {
-    this.color = DEFAULTS.RECOVERED;
+      setTimeout(function () {
+        this.color = DEFAULTS.RECOVERED   
+    }, 9000)
 }
 
 Teen.prototype.die = function die() {
@@ -63,6 +65,7 @@ Teen.prototype.die = function die() {
     this.vel = [0, 0];
     // this.type = "diceased";
 }
+
 
 
 

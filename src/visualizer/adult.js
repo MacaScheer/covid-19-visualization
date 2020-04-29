@@ -64,7 +64,9 @@ Adult.prototype.die = function die() {
     // this.type = "diceased";
 }
 Adult.prototype.recover = function recover() {
-    this.color = DEFAULTS.COLOR
+      setTimeout(function () {
+        this.color = DEFAULTS.RECOVERED   
+    }, 9000)
 }
 
 module.exports = Adult;

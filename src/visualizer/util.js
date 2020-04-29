@@ -1,3 +1,8 @@
+// const Minor = require("./minor");
+// const Teen = require("./teen");
+// const Adult = require("./adult");
+// const Senior = require("./senior");
+
 const Util = {
     inherits: function inherits(childClass, parentClass) {
         childClass.prototype = Object.create(parentClass.prototype);
@@ -44,19 +49,28 @@ const Util = {
         return Math.atan2(vel[0], vel[1])
     },
     
-    determineFate(obj) {
-        let percent;
-        if (obj instanceof "Minor") {
-            percent = 0.024;
-        } else if (obj instanceof "Teen") {
-            percent = 0.01;
-        } else if (obj instanceof "Adult") {
-            percent = 0.015;
-        } else if (obj instanceof "Senior") {
-            percent = 0.067;
+    determineFate(age) {
+        let num;
+        switch (age) {
+            case "minor":
+                num = 200;
+                break;
+            case "teen":
+                num = 50;
+                break;
+            case "adult":
+                num = 50;
+                break;
+            case "senior":
+                num = 100;
+                break;
+            default:
+                break;
         }
-        
-        debugger
+        let rand = Math.random() * num
+        let bool = rand > 10
+        console.log("WILL RECOVER: ", bool, " RANDOM NUM: ", rand)
+        return bool
     }
     
 }
