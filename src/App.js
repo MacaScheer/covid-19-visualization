@@ -7,7 +7,6 @@ const { API_KEY } = require("./config/API_KEY");
 class App extends React.Component {
   constructor(props) {
     super(props)
-    debugger
     this.state = {
       wholeData: "",
       defaultState: "CA",
@@ -27,10 +26,10 @@ class App extends React.Component {
       that.updateFromRequest(res, "cov")
       })
   
-    axios.get("")
-      .then(function (res1) {
-      that.updateFromRequest(res1, "pop")
-    })
+    // axios.get("")
+    //   .then(function (res1) {
+    //   that.updateFromRequest(res1, "pop")
+    // })
   }
 
   pickState(allStates) {
@@ -53,7 +52,6 @@ class App extends React.Component {
       this.setState({ wholeData: numsObj })
     } else if (type === "pop") {
       let demObj = {};
-      debugger
       this.setState({ population: demObj })
     }
   }

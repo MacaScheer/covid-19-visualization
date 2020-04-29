@@ -12,7 +12,6 @@ const ScenarioView = require("./scenario_view");
 class Visualizer extends React.Component {
     constructor(props) {
         super(props);
-        debugger
         this.state = {
             demoObj: {
                 population: 170,
@@ -31,7 +30,7 @@ class Visualizer extends React.Component {
             negative: this.props.data.negative,
             numDeaths: this.props.numDeaths,
             totalTested: this.props.data.totalTested
-            
+
         };
     }
     componentDidMount() {

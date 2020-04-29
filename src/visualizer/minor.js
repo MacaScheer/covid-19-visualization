@@ -44,11 +44,11 @@ Minor.prototype.collideWith = function collideWith(otherPerson) {
 Minor.prototype.progressDisease = function progressDisease() {
     let that = this;
     setTimeout(function () {
-           // if (Util.determineFate(that)) {
-        //     that.recover()
-        // } else {
+           if (Util.determineFate(that)) {
+            that.recover()
+        } else {
             that.die()
-        // };
+        };
         // that.die()
     }, 2000)
 }
@@ -57,8 +57,9 @@ Minor.prototype.die = function die() {
     this.color = DEFAULTS.DICEASEDCOLOR;
     this.vel = [0, 0]
     // this.type = "diceased"
-    
-    
+}
+Minor.prototype.recover = function recover() {
+    this.color = DEFAULTS.COLOR
 }
 
 module.exports = Minor;

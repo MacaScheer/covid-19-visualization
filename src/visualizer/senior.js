@@ -46,11 +46,11 @@ Senior.prototype.collideWith = function collideWith(otherPerson) {
 Senior.prototype.progressDisease = function progressDisease() {
     let that = this;
     setTimeout(function () {
-        // if (Util.determineFate(that)) {
-        //     that.recover()
-        // } else {
+        if (Util.determineFate(that)) {
+            that.recover()
+        } else {
             that.die()
-        // };
+        };
     }, 2000)
 }
 Senior.prototype.die = function die() {
@@ -60,7 +60,7 @@ Senior.prototype.die = function die() {
     // this.type = "diceased";
 }
 Senior.prototype.recover = function recover() {
-    
+    this.color = DEFAULTS.COLOR
 }
 
 
